@@ -1,8 +1,5 @@
 // import functions from your package
-// const { smartSearch } = require('[NAME_OF_YOUR_PACKAGE]')
+const { smartSearch, randomSearch } = require('lesson-32-package');
 
-// console.log(smartSearch(['Smith', 'John'], 'John'))
-
-let a = "bla";
-a = 4
-
+console.log(smartSearch(['Smith', 'John'], 'John'));
+console.log(randomSearch([1,2,3,4,5,6,7,8]));

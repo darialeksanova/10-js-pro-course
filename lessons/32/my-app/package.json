@@ -19,5 +19,8 @@
   },
   "lint-staged": {
     "*.js": "eslint --cache --fix"
+  },
+  "dependencies": {
+    "lesson-32-package": "^2.0.0-beta.0"
   }
 }
