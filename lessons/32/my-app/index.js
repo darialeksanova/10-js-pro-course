@@ -4,4 +4,4 @@
 // console.log(smartSearch(['Smith', 'John'], 'John'))
 
 let a = "bla";
-a = 4;
+a = 4
