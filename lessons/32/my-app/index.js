@@ -2,4 +2,6 @@
 // const { smartSearch } = require('[NAME_OF_YOUR_PACKAGE]')
 
 // console.log(smartSearch(['Smith', 'John'], 'John'))
-console.log( 1);
+
+let a = "bla";
+a = 4;
