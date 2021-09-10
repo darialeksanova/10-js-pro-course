@@ -5,3 +5,5 @@
 
 let a = "bla";
 a = 4
+
+console.log('lklkl')
