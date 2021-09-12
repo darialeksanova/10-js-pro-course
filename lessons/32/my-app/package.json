@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "cd ../../../ && husky install lessons/32/my-app/.husky"
+    "prepare": "cd ../../../ && npx mrm@2 lint-staged"
   },
   "keywords": [],
   "author": "",
@@ -15,15 +14,8 @@
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.24.2",
     "husky": "^7.0.2",
-    "lint-staged": "^11.1.2"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.js": "eslint --cache --fix"
+    "lint-staged": "^11.1.2",
+    "prettier": "^2.4.0"
   },
   "dependencies": {
     "lesson-32-package": "^2.0.0-beta.0"
