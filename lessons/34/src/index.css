@@ -1,0 +1,29 @@
+.stopwatch {
+  padding-left: 30px;
+}
+.stopwatch-form {
+  padding: 20px 20px 0 20px;
+  width: 600px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(190, 190, 190);
+  display: flex;
+  flex-direction: column;
+}
+.stopwatch-form__item {
+  margin-bottom: 25px;
+}
+.input-header {
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.results__content-item {
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.form__item_inline {
+  display: flex;
+}
+.stopwatch-form__item-workdays {
+  margin-right: 5px;
+}
