@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "noImplicitAny": true,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "esModuleInterop": true,
+    "outFile": "build/index.js",
+    "sourceMap": false,
+    "strict": true,
+    "lib": ["dom", "es6"]
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}

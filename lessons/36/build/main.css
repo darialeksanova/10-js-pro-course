@@ -1,0 +1,38 @@
+body, html {
+    padding: 0;
+    margin: 0;
+    min-height: 100vh;
+}
+
+.header {
+    background-color: #8f384d;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+}
+
+.header a {
+    color: #ffffff;
+    margin: 0 12px;
+}
+
+.logo {
+    color: #ffffff;
+    font-size: 1.2em;
+}
+
+.content {
+    overflow: hidden;
+    padding: 16px;
+    text-align: center;
+    font-size: 2em;
+}
+
+.contacts {
+    overflow: hidden;
+    padding: 16px;
+    text-align: center;
+    font-size: 2em;
+}
+
+

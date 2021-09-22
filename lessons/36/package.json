@@ -1,0 +1,18 @@
+{
+  "name": "36",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "tsc --watch",
+    "server":  "serve"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "serve": "^12.0.1",
+    "typescript": "^4.4.3"
+  }
+}
