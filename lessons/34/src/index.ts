@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const selectWorkingDaysEl = document.querySelector('#workdays-select') as HTMLSelectElement;
   const selectWorkingHoursEl = document.querySelector('#hours-select') as HTMLSelectElement;
   
-  setCurrency(selectCurrencyEl.value);
+  setCurrency(selectCurrencyEl.value as Currencies);
 
   let salaryInputElValue = 0;
   let vacationInputElValue = 0;
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   selectCurrencyEl.addEventListener('change', (event) => {
     const targetEl = event.target as HTMLSelectElement;
-    setCurrency(targetEl.value);
+    setCurrency(targetEl.value as Currencies);
   });
   
   salaryInputEl.addEventListener('input', (event) => {
@@ -48,7 +48,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }, 1000);
 });
 
-function setCurrency(currencyValue: string): void {
+enum Currencies {
+  RUB = 'руб',
+  USD = '$',
+  EUR = '€',
+}
+
+function setCurrency(currencyValue: Currencies): void {
   const currencyElements = [...document.querySelectorAll('.currency')];
   currencyElements.forEach(currencyElement => {
     currencyElement.textContent = currencyValue;
