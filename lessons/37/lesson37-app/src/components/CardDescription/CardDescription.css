@@ -1,0 +1,8 @@
+.card-description {
+  text-align: start;
+}
+
+.card-description__optional-element {
+  color: #fff;
+  font-size: 2rem;
+}
