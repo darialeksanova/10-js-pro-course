@@ -1,0 +1,12 @@
+.header {
+  padding-top: 50px;
+  padding-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header__main-title {
+  font-size: 1.7rem;
+  color: rgb(13, 13, 54);
+}
