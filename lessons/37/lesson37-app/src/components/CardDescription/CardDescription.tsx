@@ -4,8 +4,8 @@ import './CardDescription.css';
 type Props = {
   content: string;
   color: string;
-  fontSize: string;
-  optionalElement: string
+  fontSize?: string;
+  optionalElement?: string
 };
 
 function CardDescription({content, color, fontSize, optionalElement}: Props) {

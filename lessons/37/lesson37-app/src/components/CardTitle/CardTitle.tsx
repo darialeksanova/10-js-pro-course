@@ -2,9 +2,9 @@ import React from 'react';
 import './CardTitle.css';
 
 type Props = {
-  symbol: string;
+  symbol?: string;
   title: string;
-  color: string;
+  color?: string;
   isBold: string;
 };
 

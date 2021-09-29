@@ -63,7 +63,6 @@ function App() {
             </div>
             <Button
               handleButtonClick={() => console.log('Day Pass')}
-              chosenItem='Day Pass'
               content='Choose'
               backgroundColor='rgb(10, 100, 48)'
             />

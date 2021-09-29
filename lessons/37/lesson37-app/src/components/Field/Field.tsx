@@ -2,7 +2,7 @@ import React from 'react';
 import './Field.css';
 
 type Props = {
-  children: JSX.Element,
+  children: JSX.Element[],
 };
 
 function Field({ children }: Props) {
