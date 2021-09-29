@@ -1,0 +1,14 @@
+.services-list {
+  list-style: none;
+  padding-left: 0;
+  font-size: 0.8rem;
+}
+
+.services-list__item {
+  display: flex;
+  margin: 17px 0;
+}
+
+.services-list__item-text {
+  margin-left: 10px;
+}
