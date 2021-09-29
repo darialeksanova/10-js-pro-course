@@ -1,0 +1,10 @@
+.price__amount {
+  font-size: 2rem;
+  font-weight: 700;
+  display: inline;
+}
+
+.price__period {
+  font-size: 0.8rem;
+  display: inline;
+}
