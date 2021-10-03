@@ -1,0 +1,12 @@
+.emoji-list {
+  border: 1px solid rgb(204, 204, 204);
+  list-style: none;
+  padding: 0px;
+}
+
+.emoji-list__item {
+  width: 700px;
+  height: 45px;
+  position: relative;
+  border-bottom: 1px solid rgb(204, 204, 204);
+}

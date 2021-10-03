@@ -1,0 +1,31 @@
+.emoji-item {
+  font-size: 1.2rem;
+}
+
+.emoji-button {
+  cursor: pointer;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.emoji-button:hover .emoji-button-text {
+  display: block;
+}
+
+.emoji-button-text {
+  pointer-events: none;
+  display: none;
+  color: gray;
+}
+
+.text-displayed {
+  display: block;
+}
