@@ -17,14 +17,11 @@ type Emoji = {
   keywords: string;
 };
 
-class EmojiContainer extends React.Component {
-  props: Props;
-  state: State;
+class EmojiContainer extends React.Component<Props, State> {
 
   constructor(props: Props) {
     super(props);
 
-    this.props = props;
     this.state = {
       fullEmojiList: [],
     };

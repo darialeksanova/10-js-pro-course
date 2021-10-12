@@ -10,18 +10,16 @@ type Props = {
   numberOfResults: number;
 };
 
-class SearchSelect extends React.Component {
-  state: State;
-  props: Props;
+const options = [5, 10, 15, 20];
+
+class SearchSelect extends React.Component<Props, State> {
 
   constructor(props: Props) {
     super(props);
 
     this.state = {
-      options: [5, 10, 15, 20],
+      options: options,
     };
-
-    this.props = props;
   }
 
   render() {

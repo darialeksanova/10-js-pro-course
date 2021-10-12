@@ -10,8 +10,7 @@ type State = {
   numberOfResults: number;
 }
 
-class App extends React.Component {
-  state: State;
+class App extends React.Component<Props, State> {
 
   constructor(props: Props) {
     super(props);

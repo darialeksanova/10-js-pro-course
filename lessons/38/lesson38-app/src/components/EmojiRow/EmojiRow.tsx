@@ -11,15 +11,7 @@ type Emoji = {
   keywords: string;
 };
 
-class EmojiRow extends React.Component {
-  props: Props;
-
-  constructor(props: Props) {
-    super(props)
-
-    this.props = props;
-  }
-
+class EmojiRow extends React.Component<Props> {
   handleCopyEmoji = () => {
     window.navigator.clipboard.writeText(this.props.emoji.symbol)
     .then(() => alert(`${this.props.emoji.symbol} is copied!`));

@@ -6,14 +6,7 @@ type Props = {
   searchBarValueChange: (newSearchBarValue: string) => void;
 }
 
-class SearchBar extends React.Component {
-  props: Props;
-
-  constructor(props: Props) {
-    super(props);
-
-    this.props = props;
-  }
+class SearchBar extends React.Component<Props> {
 
   render() {
     return (
