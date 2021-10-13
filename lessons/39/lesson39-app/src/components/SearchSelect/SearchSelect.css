@@ -1,0 +1,11 @@
+.results-number {
+  display: flex;
+}
+
+.results-number__select {
+  margin: 0 5px 15px 5px;
+}
+
+.results-number__select {
+  background-color: transparent;
+}
