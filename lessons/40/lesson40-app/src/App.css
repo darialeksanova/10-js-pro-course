@@ -1,3 +1,30 @@
 .App {
   text-align: center;
+  padding: 15px 0 15px 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.App_light {
+  background-color: #fff;
+}
+
+.App_light .show-more-button {
+  background-color: rgb(75, 75, 75);
+  color: #fff;
+}
+
+.App_dark {
+  background-color: rgb(48, 48, 48);
+}
+
+.App_dark .show-more-button {
+  background-color: rgb(190, 140, 39);
+}
+
+.show-more-button {
+  height: 30px;
+  width: 90px;
+  border: none;
+  border-radius: 3px;
 }
