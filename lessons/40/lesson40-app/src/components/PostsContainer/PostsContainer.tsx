@@ -1,8 +1,8 @@
 import React from 'react';
 import './PostsContainer.css';
-import Post from '../Post/Post';
-import { PostType } from '../../types/PostType';
-import { AuthorInfoType } from '../../types/AuthorInfoType';
+import Post from 'components/Post/Post';
+import { PostType } from 'types/PostType';
+import { AuthorInfoType } from 'types/AuthorInfoType';
 
 type Props = {
   openAuthorInfoModal: (requestedUserID: number) => void;

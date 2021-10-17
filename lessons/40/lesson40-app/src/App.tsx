@@ -1,11 +1,11 @@
 import React, {useEffect} from 'react';
 import './App.css';
-import PostsContainer from './components/PostsContainer/PostsContainer';
-import AuthorInfoModal from './components/AuthorInfoModal/AuthorInfoModal';
-import Loader from './components/Loader/Loader';
-import { PostType } from './types/PostType';
-import { AuthorInfoType } from './types/AuthorInfoType';
-import { Theme } from './types/Theme';
+import PostsContainer from 'components/PostsContainer/PostsContainer';
+import AuthorInfoModal from 'components/AuthorInfoModal/AuthorInfoModal';
+import Loader from 'components/Loader/Loader';
+import { PostType } from 'types/PostType';
+import { AuthorInfoType } from 'types/AuthorInfoType';
+import { Theme } from 'types/Theme';
 
 export const ThemeContext = React.createContext<Theme>('light');
 

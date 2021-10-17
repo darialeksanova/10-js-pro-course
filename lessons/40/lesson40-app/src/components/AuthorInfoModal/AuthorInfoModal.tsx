@@ -1,7 +1,7 @@
 import React from 'react';
 import './AuthorInfoModal.css';
-import { AuthorInfoType } from '../../types/AuthorInfoType';
-import { ThemeContext } from '../../App';
+import { AuthorInfoType } from 'types/AuthorInfoType';
+import { ThemeContext } from 'App';
 
 type Props = {
   closeAuthorInfoModal: () => void;
