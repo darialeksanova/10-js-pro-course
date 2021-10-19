@@ -1,13 +1,13 @@
 import React, {useContext} from 'react';
 import './PostCard.css';
 import { Post } from 'types/Post';
-import { AuthorInfo } from 'types/AuthorInfo';
+import { Author } from 'types/Author';
 import { ThemeContext } from 'App';
 
 type Props = {
   openAuthorInfoModal: (requestedUserId: number) => void;
   post: Post;
-  authors: AuthorInfo[];
+  authors: Author[];
 }
 
 const PostCard = (props: Props) => {

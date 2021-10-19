@@ -1,20 +1,21 @@
 import React, {useState, useEffect, useCallback, createContext} from 'react';
 import './App.css';
 import PostsContainer from 'components/PostsContainer';
-import AuthorInfoModal from 'components/AuthorInfoModal';
+import Modal from 'components/Modal';
 import Loader from 'components/Loader';
 import { Post } from 'types/Post';
-import { AuthorInfo } from 'types/AuthorInfo';
+import { Author } from 'types/Author';
 import { Themes } from 'types/Theme';
+import AuthorInfo from 'components/AuthorInfo';
 
 export const ThemeContext = createContext<Themes>(Themes.light);
 
 const App = () => {
-  const [requestedAuthor, setRequestedAuthor] = useState<AuthorInfo | null>(null);
+  const [requestedAuthor, setRequestedAuthor] = useState<Author | null>(null);
   const [visiblePostsAmount, setVisiblePostsAmount] = useState(5);
   const [isDataLoaded, setIsDataLoaded] = useState(false);
   const [posts, setPosts] = useState<Post[]>([]);
-  const [authors, setAuthors] = useState<AuthorInfo[]>([]);
+  const [authors, setAuthors] = useState<Author[]>([]);
   const [theme, setTheme] = useState<Themes>(Themes.light);
 
   useEffect(() => {
@@ -73,10 +74,9 @@ const App = () => {
               authors={authors}
             />
             {requestedAuthor && (
-            <AuthorInfoModal 
-              authorInfo={requestedAuthor}
-              closeAuthorInfoModal={() => setRequestedAuthor(null)} 
-            />
+            <Modal closeModal={() => setRequestedAuthor(null)}> 
+              <AuthorInfo authorData={requestedAuthor}></AuthorInfo>
+            </Modal>
             )}
             <button className='show-more-button' onClick={() => setVisiblePostsAmount(prevState => prevState + 5)}>Show more</button>
           </>

@@ -2,13 +2,13 @@ import React from 'react';
 import './PostsContainer.css';
 import PostCard from 'components/PostCard';
 import { Post } from 'types/Post';
-import { AuthorInfo } from 'types/AuthorInfo';
+import { Author } from 'types/Author';
 
 type Props = {
   openAuthorInfoModal: (requestedUserID: number) => void;
   visiblePostsAmount: number;
   posts: Post[];
-  authors: AuthorInfo[];
+  authors: Author[];
 }
 
 const PostsContainer = (props: Props) => {

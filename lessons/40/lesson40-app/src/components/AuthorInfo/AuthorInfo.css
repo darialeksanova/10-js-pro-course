@@ -1,0 +1,27 @@
+.author-name {
+  margin: 0;
+  padding: 15px;
+}
+
+.author-info {
+  padding: 15px;
+  flex-grow: 1;
+  border-top: 1px solid rgb(209, 209, 209);
+  border-bottom: 1px solid rgb(209, 209, 209);
+}
+
+.author-address {
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.author-email {
+  margin-right: 10px;
+  color: rgb(69, 152, 248);
+  font-size: 14px;
+}
+
+.author-tel {
+  color: rgb(69, 152, 248);
+  font-size: 14px;
+}

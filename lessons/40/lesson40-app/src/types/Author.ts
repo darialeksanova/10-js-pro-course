@@ -1,4 +1,4 @@
-export type AuthorInfo = {
+export type Author = {
   id: number;
   name: string;
   email: string;
