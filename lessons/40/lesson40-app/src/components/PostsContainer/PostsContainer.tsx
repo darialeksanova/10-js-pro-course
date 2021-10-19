@@ -1,21 +1,21 @@
 import React from 'react';
 import './PostsContainer.css';
-import Post from 'components/Post/Post';
-import { PostType } from 'types/PostType';
-import { AuthorInfoType } from 'types/AuthorInfoType';
+import PostCard from 'components/PostCard';
+import { Post } from 'types/Post';
+import { AuthorInfo } from 'types/AuthorInfo';
 
 type Props = {
   openAuthorInfoModal: (requestedUserID: number) => void;
   visiblePostsAmount: number;
-  posts: PostType[];
-  authors: AuthorInfoType[];
+  posts: Post[];
+  authors: AuthorInfo[];
 }
 
-function PostsContainer(props: Props) {
+const PostsContainer = (props: Props) => {
   return (
     <div className='posts-container'>
       {props.posts.slice(0, props.visiblePostsAmount).map(postsItem => {
-        return <Post 
+        return <PostCard 
           key={postsItem.id} 
           openAuthorInfoModal={(requestedUserId) => props.openAuthorInfoModal(requestedUserId)} 
           post={postsItem}

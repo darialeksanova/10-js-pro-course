@@ -1,20 +1,21 @@
-import React, {useEffect} from 'react';
+import React, {useState, useEffect, useCallback, createContext} from 'react';
 import './App.css';
-import PostsContainer from 'components/PostsContainer/PostsContainer';
-import AuthorInfoModal from 'components/AuthorInfoModal/AuthorInfoModal';
-import Loader from 'components/Loader/Loader';
-import { PostType } from 'types/PostType';
-import { AuthorInfoType } from 'types/AuthorInfoType';
-import { Theme } from 'types/Theme';
+import PostsContainer from 'components/PostsContainer';
+import AuthorInfoModal from 'components/AuthorInfoModal';
+import Loader from 'components/Loader';
+import { Post } from 'types/Post';
+import { AuthorInfo } from 'types/AuthorInfo';
+import { Themes } from 'types/Theme';
 
-export const ThemeContext = React.createContext<Theme>('light');
+export const ThemeContext = createContext<Themes>(Themes.light);
 
-function App() {
-  const [requestedAuthor, setRequestedAuthor] = React.useState<AuthorInfoType | null>(null);
-  const [visiblePostsAmount, setVisiblePostsAmount] = React.useState(5);
-  const [posts, setPosts] = React.useState<PostType[]>([]);
-  const [authors, setAuthors] = React.useState<AuthorInfoType[]>([]);
-  const [theme, setTheme] = React.useState<Theme>('light');
+const App = () => {
+  const [requestedAuthor, setRequestedAuthor] = useState<AuthorInfo | null>(null);
+  const [visiblePostsAmount, setVisiblePostsAmount] = useState(5);
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [authors, setAuthors] = useState<AuthorInfo[]>([]);
+  const [theme, setTheme] = useState<Themes>(Themes.light);
 
   useEffect(() => {
     fetch('https://jsonplaceholder.typicode.com/posts')
@@ -22,11 +23,13 @@ function App() {
       if (response.ok) {
         return response.json();
       }
-      console.log(response);
 
       throw new Error('Error on posts fetch!');
     })
-    .then((posts: PostType[]) => setPosts(posts))
+    .then((posts: Post[]) => {
+      setPosts(posts);
+      setIsDataLoaded(true);
+    })
     .catch(_error => console.log('Source is not reachable!'));
 
     fetch(`https://jsonplaceholder.typicode.com/users/`)
@@ -41,25 +44,28 @@ function App() {
     .catch(_error => console.log('Sourse is not reachable!'));
   }, []);
 
-  function openAuthorInfoModal(requestedAuthorId: number): void {
-    const requestedAuthor = authors.find((author) => author.id === requestedAuthorId);
+  const openAuthorInfoModal = useCallback((requestedAuthorId: number): void => {
+      const requestedAuthor = authors.find((author) => author.id === requestedAuthorId);
+  
+      if (requestedAuthor === undefined) {
+        throw new Error('Author not found!');
+      }
+  
+      setRequestedAuthor(requestedAuthor);
+    },
+    [authors]
+  );
+    
 
-    if (requestedAuthor === undefined) {
-      throw new Error('Author not found!');
-    }
-
-    setRequestedAuthor(requestedAuthor);
-  }
-
-  const changeThemeButtonText = () => theme === 'light' ? 'dark' : 'light';
+  const changeThemeButtonText = useCallback(() => theme === Themes.light ? Themes.dark : Themes.light, [theme]);
 
   return (
     <ThemeContext.Provider value={theme}>
       <div className={`App App_${theme}`}>
-        {posts.length === 0 && <Loader />}
-        {posts.length !== 0 && (
+        {!isDataLoaded && <Loader />}
+        {isDataLoaded && (
           <>
-            <button className='change-theme-button' onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>{changeThemeButtonText()} mode</button>
+            <button className='change-theme-button' onClick={() => setTheme(theme === Themes.light ? Themes.dark : Themes.light)}>{changeThemeButtonText()} mode</button>
             <PostsContainer 
               openAuthorInfoModal={(requestedUserId) => openAuthorInfoModal(requestedUserId)} 
               visiblePostsAmount={visiblePostsAmount}

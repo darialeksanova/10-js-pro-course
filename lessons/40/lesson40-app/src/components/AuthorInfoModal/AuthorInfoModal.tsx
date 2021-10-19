@@ -1,15 +1,15 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import './AuthorInfoModal.css';
-import { AuthorInfoType } from 'types/AuthorInfoType';
+import { AuthorInfo } from 'types/AuthorInfo';
 import { ThemeContext } from 'App';
 
 type Props = {
   closeAuthorInfoModal: () => void;
-  authorInfo: AuthorInfoType;
+  authorInfo: AuthorInfo;
 }
 
-function AuthorInfoModal(props: Props) {
-  const theme = React.useContext(ThemeContext);
+const AuthorInfoModal = (props: Props) => {
+  const theme = useContext(ThemeContext);
 
   return (
     <div className='modal-overlay'>

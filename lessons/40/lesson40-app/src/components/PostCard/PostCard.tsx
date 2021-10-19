@@ -1,19 +1,19 @@
-import React from 'react';
-import './Post.css';
-import { PostType } from 'types/PostType';
-import { AuthorInfoType } from 'types/AuthorInfoType';
+import React, {useContext} from 'react';
+import './PostCard.css';
+import { Post } from 'types/Post';
+import { AuthorInfo } from 'types/AuthorInfo';
 import { ThemeContext } from 'App';
 
 type Props = {
   openAuthorInfoModal: (requestedUserId: number) => void;
-  post: PostType;
-  authors: AuthorInfoType[];
+  post: Post;
+  authors: AuthorInfo[];
 }
 
-function Post(props: Props) {
-  const theme = React.useContext(ThemeContext);
+const PostCard = (props: Props) => {
+  const theme = useContext(ThemeContext);
 
-  function getAuthorName() {
+  const getAuthorName = () => {
     const requestedUser = props.authors.find(author => props.post.userId === author.id);
     return requestedUser?.name;
   }
@@ -29,4 +29,4 @@ function Post(props: Props) {
     </div>
   );
 }
-export default Post;
+export default PostCard;
