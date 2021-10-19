@@ -11,15 +11,15 @@ type Props = {
   authors: Author[];
 }
 
-const PostsContainer = (props: Props) => {
+const PostsContainer = ({openAuthorInfoModal, visiblePostsAmount, posts, authors}: Props): JSX.Element => {
   return (
     <div className='posts-container'>
-      {props.posts.slice(0, props.visiblePostsAmount).map(postsItem => {
+      {posts.slice(0, visiblePostsAmount).map(postsItem => {
         return <PostCard 
           key={postsItem.id} 
-          openAuthorInfoModal={(requestedUserId) => props.openAuthorInfoModal(requestedUserId)} 
+          openAuthorInfoModal={(requestedUserId) => openAuthorInfoModal(requestedUserId)} 
           post={postsItem}
-          authors={props.authors}
+          authors={authors}
         />
       })}
     </div>

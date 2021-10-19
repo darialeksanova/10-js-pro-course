@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useCallback} from 'react';
 import './PostCard.css';
 import { Post } from 'types/Post';
 import { Author } from 'types/Author';
@@ -10,21 +10,24 @@ type Props = {
   authors: Author[];
 }
 
-const PostCard = (props: Props) => {
+const PostCard = ({openAuthorInfoModal, post, authors}: Props): JSX.Element => {
   const theme = useContext(ThemeContext);
 
-  const getAuthorName = () => {
-    const requestedUser = props.authors.find(author => props.post.userId === author.id);
-    return requestedUser?.name;
-  }
+  const getAuthorName = useCallback((): string => {
+    const requestedUser = authors.find(author => post.userId === author.id);
+    if (requestedUser) {
+      return requestedUser?.name;
+    }
+    return '';
+  }, [authors, post.userId]);
 
   return (
     <div className={`post post_${theme}`}>
-      <h3 className='post__title'>{props.post.title}</h3>
-      <div className='post__content'>{props.post.body}</div>
+      <h3 className='post__title'>{post.title}</h3>
+      <div className='post__content'>{post.body}</div>
       <div className='post__author-info'>
         <span>Author: </span>
-        <button className='post__author-info-button' onClick={() => props.openAuthorInfoModal(props.post.userId)}>{getAuthorName()}</button>
+        <button className='post__author-info-button' onClick={() => openAuthorInfoModal(post.userId)}>{getAuthorName()}</button>
       </div>
     </div>
   );

@@ -10,7 +10,7 @@ import AuthorInfo from 'components/AuthorInfo';
 
 export const ThemeContext = createContext<Themes>(Themes.light);
 
-const App = () => {
+const App = (): JSX.Element => {
   const [requestedAuthor, setRequestedAuthor] = useState<Author | null>(null);
   const [visiblePostsAmount, setVisiblePostsAmount] = useState(5);
   const [isDataLoaded, setIsDataLoaded] = useState(false);

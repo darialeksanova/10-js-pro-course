@@ -6,7 +6,7 @@ type Props = {
   authorData: Author;
 }
 
-const AuthorInfo = ({authorData}: Props) => {
+const AuthorInfo = ({authorData}: Props): JSX.Element => {
 
   return (
     <>

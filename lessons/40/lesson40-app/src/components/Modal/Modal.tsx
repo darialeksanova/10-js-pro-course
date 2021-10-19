@@ -7,7 +7,7 @@ type Props = {
   children: JSX.Element;
 }
 
-function Modal({closeModal, children}: Props) {
+const Modal = ({closeModal, children}: Props): JSX.Element => {
   const theme = useContext(ThemeContext);
 
   return (
