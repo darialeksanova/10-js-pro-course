@@ -2,23 +2,23 @@
   width: 200px;
   height: 400px;
   padding: 15px;
-  border: 1px solid rgb(209, 209, 209);
+  border: 1px solid var(--border-color);
   border-radius: 5px;
   position: relative;
   margin: 15px 10px;
 }
 
 .post_dark .post__author-info {
-  color: #fff;
-  background-color: rgb(83, 83, 83);
+  color: var(--color-primary-light);
+  background-color: var(--color-secondary-dark);
 }
 
 .post_dark .post__content {
-  color: #fff;
+  color: var(--color-primary-light);
 }
 
 .post_dark .post__title {
-  color: #fff;
+  color: var(--color-primary-light);
 }
 
 .post__content {
@@ -34,14 +34,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(235, 235, 235);
-  border-top: 1px solid rgb(209, 209, 209);
+  background-color: var(--color-secondary-light);
+  border-top: 1px solid var(--border-color);
 }
 
 .post__author-info-button {
   border: none;
   background-color: transparent;
   padding-top: 4px;
-  color: rgb(69, 152, 248);
+  color: var(--link-color);
   cursor: pointer;
 }

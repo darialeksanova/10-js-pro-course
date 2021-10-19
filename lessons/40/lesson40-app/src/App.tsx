@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useCallback, createContext} from 'react';
-import './App.css';
+import styles from './App.module.css';
 import PostsContainer from 'components/PostsContainer';
 import Modal from 'components/Modal';
 import Loader from 'components/Loader';
@@ -56,17 +56,17 @@ const App = (): JSX.Element => {
     },
     [authors]
   );
-    
 
   const changeThemeButtonText = useCallback(() => theme === Themes.light ? Themes.dark : Themes.light, [theme]);
 
   return (
     <ThemeContext.Provider value={theme}>
-      <div className={`App App_${theme}`}>
+      {/* <div className={styles[`App App_${theme}`]}> */}
+      <div className={styles['App']}>
         {!isDataLoaded && <Loader />}
         {isDataLoaded && (
           <>
-            <button className='change-theme-button' onClick={() => setTheme(theme === Themes.light ? Themes.dark : Themes.light)}>{changeThemeButtonText()} mode</button>
+            <button className={styles['change-theme-button']} onClick={() => setTheme(theme === Themes.light ? Themes.dark : Themes.light)}>{changeThemeButtonText()} mode</button>
             <PostsContainer 
               openAuthorInfoModal={(requestedUserId) => openAuthorInfoModal(requestedUserId)} 
               visiblePostsAmount={visiblePostsAmount}
@@ -78,7 +78,7 @@ const App = (): JSX.Element => {
               <AuthorInfo authorData={requestedAuthor}></AuthorInfo>
             </Modal>
             )}
-            <button className='show-more-button' onClick={() => setVisiblePostsAmount(prevState => prevState + 5)}>Show more</button>
+            <button className={styles['show-more-button']} onClick={() => setVisiblePostsAmount(prevState => prevState + 5)}>Show more</button>
           </>
         )}
       </div>

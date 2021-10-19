@@ -6,8 +6,8 @@
 .author-info {
   padding: 15px;
   flex-grow: 1;
-  border-top: 1px solid rgb(209, 209, 209);
-  border-bottom: 1px solid rgb(209, 209, 209);
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .author-address {
@@ -17,11 +17,11 @@
 
 .author-email {
   margin-right: 10px;
-  color: rgb(69, 152, 248);
+  color: var(--link-color);
   font-size: 14px;
 }
 
 .author-tel {
-  color: rgb(69, 152, 248);
+  color: var(--link-color);
   font-size: 14px;
 }

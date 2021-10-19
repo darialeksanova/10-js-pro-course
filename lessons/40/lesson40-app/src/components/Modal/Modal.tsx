@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import './Modal.css';
+import styles from './Modal.module.css';
 import { ThemeContext } from 'App';
 
 type Props = {
@@ -11,14 +11,15 @@ const Modal = ({closeModal, children}: Props): JSX.Element => {
   const theme = useContext(ThemeContext);
 
   return (
-    <div className='modal-overlay'>
-      <div className='modal-overlay__backdrop' onClick={closeModal}></div>
-      <div className={`modal-overlay__window modal-overlay__window_${theme}`}>
-        <div className='modal-content'>
+    <div className={styles['modal-overlay']}>
+      <div className={styles['modal-overlay__backdrop']} onClick={closeModal}></div>
+      {/* <div className={styles[`modal-overlay__window modal-overlay__window_${theme}`]}> */}
+      <div className={styles['modal-overlay__window']}>
+        <div className={styles['modal-content']}>
           {children}
         </div>
-        <div className='modal-actions'>
-          <button className='close-modal-button' onClick={closeModal}>Close</button>
+        <div className={styles['modal-actions']}>
+          <button className={styles['close-modal-button']} onClick={closeModal}>Close</button>
         </div>
       </div>
     </div>

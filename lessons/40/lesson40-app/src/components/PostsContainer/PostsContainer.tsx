@@ -1,5 +1,5 @@
 import React from 'react';
-import './PostsContainer.css';
+import styles from './PostsContainer.module.css';
 import PostCard from 'components/PostCard';
 import { Post } from 'types/Post';
 import { Author } from 'types/Author';
@@ -13,7 +13,7 @@ type Props = {
 
 const PostsContainer = ({openAuthorInfoModal, visiblePostsAmount, posts, authors}: Props): JSX.Element => {
   return (
-    <div className='posts-container'>
+    <div className={styles['posts-container']}>
       {posts.slice(0, visiblePostsAmount).map(postsItem => {
         return <PostCard 
           key={postsItem.id} 

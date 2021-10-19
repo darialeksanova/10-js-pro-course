@@ -6,20 +6,15 @@
 }
 
 .App_light {
-  background-color: #fff;
-}
-
-.App_light .show-more-button {
-  background-color: rgb(75, 75, 75);
-  color: #fff;
+  background-color: var(--color-primary-light);
 }
 
 .App_dark {
-  background-color: rgb(48, 48, 48);
+  background-color: var(--color-primary-dark);
 }
 
 .App_dark .show-more-button {
-  background-color: rgb(190, 140, 39);
+  background-color: var(--button-color-dark);
 }
 
 .show-more-button {
@@ -27,4 +22,6 @@
   width: 90px;
   border: none;
   border-radius: 3px;
+  background-color: var(--button-color-light);
+  color: var(--color-primary-light);
 }

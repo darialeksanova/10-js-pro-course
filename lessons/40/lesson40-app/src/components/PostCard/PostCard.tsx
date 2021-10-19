@@ -1,5 +1,5 @@
 import React, {useContext, useCallback} from 'react';
-import './PostCard.css';
+import styles from './PostCard.module.css';
 import { Post } from 'types/Post';
 import { Author } from 'types/Author';
 import { ThemeContext } from 'App';
@@ -22,12 +22,13 @@ const PostCard = ({openAuthorInfoModal, post, authors}: Props): JSX.Element => {
   }, [authors, post.userId]);
 
   return (
-    <div className={`post post_${theme}`}>
-      <h3 className='post__title'>{post.title}</h3>
-      <div className='post__content'>{post.body}</div>
-      <div className='post__author-info'>
+    <div className={styles['post']}>
+    {/* <div className={styles[`post post_${theme}`]}> */}
+      <h3 className={styles['post__title']}>{post.title}</h3>
+      <div className={styles['post__content']}>{post.body}</div>
+      <div className={styles['post__author-info']}>
         <span>Author: </span>
-        <button className='post__author-info-button' onClick={() => openAuthorInfoModal(post.userId)}>{getAuthorName()}</button>
+        <button className={styles['post__author-info-button']} onClick={() => openAuthorInfoModal(post.userId)}>{getAuthorName()}</button>
       </div>
     </div>
   );

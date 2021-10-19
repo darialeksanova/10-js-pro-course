@@ -1,5 +1,5 @@
 import React from 'react';
-import './AuthorInfo.css';
+import styles from './AuthorInfo.module.css';
 import { Author } from 'types/Author';
 
 type Props = {
@@ -7,15 +7,16 @@ type Props = {
 }
 
 const AuthorInfo = ({authorData}: Props): JSX.Element => {
+console.log({ styles });
 
   return (
     <>
-      <h3 className='author-name'>{authorData.name}</h3>
-      <div className='author-info'>
-        <div className='author-address'>Address: {authorData.address.city}, {authorData.address.street}, {authorData.address.suite}</div>
-        <div className='author-contacts'>
-          <span className='author-email'>E-mail: {authorData.email}</span>
-          <span className='author-tel'>Tel: {authorData.phone}</span>
+      <h3 className={styles['author-name']}>{authorData.name}</h3>
+      <div className={styles['author-info']}>
+        <div className={styles['author-address']}>Address: {authorData.address.city}, {authorData.address.street}, {authorData.address.suite}</div>
+        <div className={styles['author-contacts']}>
+          <span className={styles['author-email']}>E-mail: {authorData.email}</span>
+          <span className={styles['author-tel']}>Tel: {authorData.phone}</span>
         </div>
       </div>
     </>
