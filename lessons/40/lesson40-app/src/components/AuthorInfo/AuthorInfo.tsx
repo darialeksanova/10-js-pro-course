@@ -7,7 +7,6 @@ type Props = {
 }
 
 const AuthorInfo = ({authorData}: Props): JSX.Element => {
-console.log({ styles });
 
   return (
     <>

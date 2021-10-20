@@ -1,0 +1,27 @@
+.button {
+  height: 30px;
+  width: 90px;
+  border: none;
+  border-radius: 3px;
+  background-color: var(--button-color-light);
+  color: var(--color-primary-light);
+}
+
+.button_dark {
+  background-color: var(--button-color-dark);
+}
+
+.small {
+  height: 30px;
+  width: 70px;
+}
+
+.medium {
+  height: 30px;
+  width: 90px;
+}
+
+.large {
+  height: 50px;
+  width: 120px;
+}

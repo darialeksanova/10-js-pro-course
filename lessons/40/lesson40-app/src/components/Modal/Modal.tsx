@@ -1,25 +1,38 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import styles from './Modal.module.css';
-import { ThemeContext } from 'App';
+import Button from 'components/Button';
+import { Themes } from 'types/Theme';
+import classNames from 'classnames/bind';
 
 type Props = {
   closeModal: () => void;
   children: JSX.Element;
+  theme: Themes;
+  size?: 'small' | 'medium' | 'large';
 }
 
-const Modal = ({closeModal, children}: Props): JSX.Element => {
-  const theme = useContext(ThemeContext);
+const cx = classNames.bind(styles);
+
+const Modal = ({closeModal, children, theme, size}: Props): JSX.Element => {
+  const classNames = cx({
+    modal: true,
+    modal_dark: theme === 'dark',
+  }, size);
 
   return (
-    <div className={styles['modal-overlay']}>
-      <div className={styles['modal-overlay__backdrop']} onClick={closeModal}></div>
-      {/* <div className={styles[`modal-overlay__window modal-overlay__window_${theme}`]}> */}
-      <div className={styles['modal-overlay__window']}>
+    <div className={styles['overlay']}>
+      <div className={styles['backdrop']} onClick={closeModal}></div>
+      <div className={classNames}>
         <div className={styles['modal-content']}>
           {children}
         </div>
         <div className={styles['modal-actions']}>
-          <button className={styles['close-modal-button']} onClick={closeModal}>Close</button>
+          <Button 
+            onClick={closeModal} 
+            text='Close'
+            theme={theme}
+            size='small'
+          />
         </div>
       </div>
     </div>

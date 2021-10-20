@@ -1,5 +1,6 @@
-import React, {useState, useEffect, useCallback, createContext} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import styles from './App.module.css';
+import { ThemeContext } from './ThemeContext';
 import PostsContainer from 'components/PostsContainer';
 import Modal from 'components/Modal';
 import Loader from 'components/Loader';
@@ -7,8 +8,10 @@ import { Post } from 'types/Post';
 import { Author } from 'types/Author';
 import { Themes } from 'types/Theme';
 import AuthorInfo from 'components/AuthorInfo';
+import Button from 'components/Button';
+import classNames from 'classnames/bind';
 
-export const ThemeContext = createContext<Themes>(Themes.light);
+const cx = classNames.bind(styles);
 
 const App = (): JSX.Element => {
   const [requestedAuthor, setRequestedAuthor] = useState<Author | null>(null);
@@ -18,30 +21,23 @@ const App = (): JSX.Element => {
   const [authors, setAuthors] = useState<Author[]>([]);
   const [theme, setTheme] = useState<Themes>(Themes.light);
 
-  useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/posts')
-    .then(response => {
-      if (response.ok) {
-        return response.json();
-      }
+  const appClassNames = cx({
+    App: true,
+    App_dark: theme === 'dark',
+  });
 
-      throw new Error('Error on posts fetch!');
-    })
-    .then((posts: Post[]) => {
+  useEffect(() => {
+    Promise.all([
+      fetch(`https://jsonplaceholder.typicode.com/posts`)
+        .then((response):Promise<Post[]> => response.json()),
+      fetch(`https://jsonplaceholder.typicode.com/users`)
+        .then((response):Promise<Author[]> => response.json()), 
+    ])
+    .then(([posts, authors]) => {
       setPosts(posts);
+      setAuthors(authors);
       setIsDataLoaded(true);
     })
-    .catch(_error => console.log('Source is not reachable!'));
-
-    fetch(`https://jsonplaceholder.typicode.com/users/`)
-    .then(response => {
-      if (response.ok) {
-        return response.json();
-      }
-
-      throw new Error('Error on users fetch!');
-    })
-    .then(authorsInfo => setAuthors(authorsInfo))
     .catch(_error => console.log('Sourse is not reachable!'));
   }, []);
 
@@ -61,12 +57,16 @@ const App = (): JSX.Element => {
 
   return (
     <ThemeContext.Provider value={theme}>
-      {/* <div className={styles[`App App_${theme}`]}> */}
-      <div className={styles['App']}>
+      <div className={appClassNames}>
         {!isDataLoaded && <Loader />}
         {isDataLoaded && (
           <>
-            <button className={styles['change-theme-button']} onClick={() => setTheme(theme === Themes.light ? Themes.dark : Themes.light)}>{changeThemeButtonText()} mode</button>
+            <Button 
+              onClick={() => setTheme(theme === Themes.light ? Themes.dark : Themes.light)} 
+              text={`${changeThemeButtonText()} mode`}
+              theme={theme}
+              size='medium'
+            /> 
             <PostsContainer 
               openAuthorInfoModal={(requestedUserId) => openAuthorInfoModal(requestedUserId)} 
               visiblePostsAmount={visiblePostsAmount}
@@ -74,11 +74,20 @@ const App = (): JSX.Element => {
               authors={authors}
             />
             {requestedAuthor && (
-            <Modal closeModal={() => setRequestedAuthor(null)}> 
+            <Modal 
+              closeModal={() => setRequestedAuthor(null)}
+              theme={theme}
+              size='medium'
+            > 
               <AuthorInfo authorData={requestedAuthor}></AuthorInfo>
             </Modal>
             )}
-            <button className={styles['show-more-button']} onClick={() => setVisiblePostsAmount(prevState => prevState + 5)}>Show more</button>
+            <Button 
+              onClick={() => setVisiblePostsAmount(prevState => prevState + 5)} 
+              text='Show more'
+              theme={theme}
+              size='medium'
+            />
           </>
         )}
       </div>

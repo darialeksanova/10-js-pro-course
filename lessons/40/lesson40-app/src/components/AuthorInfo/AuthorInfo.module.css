@@ -12,16 +12,13 @@
 
 .author-address {
   margin-bottom: 15px;
-  font-size: 14px;
 }
 
 .author-email {
   margin-right: 10px;
   color: var(--link-color);
-  font-size: 14px;
 }
 
 .author-tel {
   color: var(--link-color);
-  font-size: 14px;
 }

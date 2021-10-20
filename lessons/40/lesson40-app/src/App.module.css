@@ -1,27 +1,11 @@
 .App {
   text-align: center;
-  padding: 15px 0 15px 0;
+  padding: 30px 0 30px 0;
   height: 100vh;
   overflow-y: auto;
-}
-
-.App_light {
   background-color: var(--color-primary-light);
 }
 
 .App_dark {
   background-color: var(--color-primary-dark);
-}
-
-.App_dark .show-more-button {
-  background-color: var(--button-color-dark);
-}
-
-.show-more-button {
-  height: 30px;
-  width: 90px;
-  border: none;
-  border-radius: 3px;
-  background-color: var(--button-color-light);
-  color: var(--color-primary-light);
 }

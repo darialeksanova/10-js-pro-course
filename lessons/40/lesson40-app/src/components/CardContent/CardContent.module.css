@@ -1,0 +1,25 @@
+.card-content {
+  margin-bottom: 15px;
+}
+
+.card-author-info {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid var(--border-color);
+}
+
+.card-author-info-button {
+  border: none;
+  background-color: transparent;
+  padding-top: 4px;
+  color: var(--link-color);
+  cursor: pointer;
+  font-family: var(--font-default);
+  font-size: 16px;
+}
