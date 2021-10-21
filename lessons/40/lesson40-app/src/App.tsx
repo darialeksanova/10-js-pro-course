@@ -21,11 +21,6 @@ const App = (): JSX.Element => {
   const [authors, setAuthors] = useState<Author[]>([]);
   const [theme, setTheme] = useState<Themes>(Themes.light);
 
-  const appClassNames = cx({
-    App: true,
-    App_dark: theme === 'dark',
-  });
-
   useEffect(() => {
     Promise.all([
       fetch(`https://jsonplaceholder.typicode.com/posts`)
@@ -57,7 +52,10 @@ const App = (): JSX.Element => {
 
   return (
     <ThemeContext.Provider value={theme}>
-      <div className={appClassNames}>
+      <div className={cx({
+          App: true,
+          dark: theme === 'dark',
+        })}>
         {!isDataLoaded && <Loader />}
         {isDataLoaded && (
           <>

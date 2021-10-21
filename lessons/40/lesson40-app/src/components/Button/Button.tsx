@@ -13,14 +13,14 @@ type Props = {
 const cx = classNames.bind(styles);
 
 const Button = ({text, theme, size, onClick}: Props): JSX.Element => {
-
-  const className = cx({
-    button: true,
-    button_dark: theme === 'dark', 
-  }, size);
-
   return (
-    <button className={className} onClick={onClick}>{text}</button>
+    <button 
+      className={cx({
+        button: true,
+        dark: theme === 'dark', 
+    }, size)} 
+      onClick={onClick}>{text}
+    </button>
   );
 }
 

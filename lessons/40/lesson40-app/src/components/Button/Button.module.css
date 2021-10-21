@@ -3,12 +3,12 @@
   width: 90px;
   border: none;
   border-radius: 3px;
-  background-color: var(--button-color-light);
+  background-color: var(--color-accent-light);
   color: var(--color-primary-light);
 }
 
-.button_dark {
-  background-color: var(--button-color-dark);
+.dark {
+  background-color: var(--color-accent-dark);
 }
 
 .small {

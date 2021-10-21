@@ -12,13 +12,11 @@ type Props = {
 const cx = classNames.bind(styles);
 
 const Card = ({ children, size, theme }: Props): JSX.Element => {
-  const classNames = cx({
-    card: true,
-    card_dark: theme === 'dark',
-  }, size);
-
   return (
-    <div className={classNames}>
+    <div className={cx({
+      card: true,
+      dark: theme === 'dark',
+    }, size)}>
       {children}
     </div>
   );

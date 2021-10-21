@@ -36,12 +36,12 @@
   font-size: 16px;
 }
 
-.modal_dark {
+.dark {
   color: var(--color-primary-light);
   background-color: var(--color-primary-dark);
 }
 
-.modal-actions {
+.modalActions {
   padding: 15px;
   display: flex;
   justify-content: flex-end;

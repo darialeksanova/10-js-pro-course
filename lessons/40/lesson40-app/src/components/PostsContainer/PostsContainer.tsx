@@ -17,7 +17,7 @@ const PostsContainer = ({openAuthorInfoModal, visiblePostsAmount, posts, authors
   const theme = useContext(ThemeContext);
 
   return (
-    <div className={styles['posts-container']}>
+    <div className={styles.postsСontainer}>
       {posts.slice(0, visiblePostsAmount).map(postsItem => {
         return (
           <Card 

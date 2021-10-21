@@ -1,8 +1,8 @@
-.card-content {
+.cardContent {
   margin-bottom: 15px;
 }
 
-.card-author-info {
+.cardAuthorInfo {
   position: absolute;
   left: 0;
   bottom: 0;
@@ -14,7 +14,7 @@
   border-top: 1px solid var(--border-color);
 }
 
-.card-author-info-button {
+.cardAuthorInfoButton {
   border: none;
   background-color: transparent;
   padding-top: 4px;

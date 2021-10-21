@@ -14,19 +14,18 @@ type Props = {
 const cx = classNames.bind(styles);
 
 const Modal = ({closeModal, children, theme, size}: Props): JSX.Element => {
-  const classNames = cx({
-    modal: true,
-    modal_dark: theme === 'dark',
-  }, size);
 
   return (
-    <div className={styles['overlay']}>
-      <div className={styles['backdrop']} onClick={closeModal}></div>
-      <div className={classNames}>
-        <div className={styles['modal-content']}>
+    <div className={styles.overlay}>
+      <div className={styles.backdrop} onClick={closeModal}></div>
+      <div className={cx({
+        modal: true,
+        dark: theme === 'dark',
+      }, size)}>
+        <div className={styles.modalContent}>
           {children}
         </div>
-        <div className={styles['modal-actions']}>
+        <div className={styles.modalActions}>
           <Button 
             onClick={closeModal} 
             text='Close'

@@ -1,24 +1,24 @@
-.author-name {
+.authorName {
   margin: 0;
   padding: 15px;
 }
 
-.author-info {
+.authorInfo {
   padding: 15px;
   flex-grow: 1;
   border-top: 1px solid var(--border-color);
   border-bottom: 1px solid var(--border-color);
 }
 
-.author-address {
+.authorAddress {
   margin-bottom: 15px;
 }
 
-.author-email {
+.authorEmail {
   margin-right: 10px;
   color: var(--link-color);
 }
 
-.author-tel {
+.authorTel {
   color: var(--link-color);
 }

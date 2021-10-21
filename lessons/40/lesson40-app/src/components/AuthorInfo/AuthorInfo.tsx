@@ -7,15 +7,14 @@ type Props = {
 }
 
 const AuthorInfo = ({authorData}: Props): JSX.Element => {
-
   return (
     <>
-      <h3 className={styles['author-name']}>{authorData.name}</h3>
-      <div className={styles['author-info']}>
-        <div className={styles['author-address']}>Address: {authorData.address.city}, {authorData.address.street}, {authorData.address.suite}</div>
-        <div className={styles['author-contacts']}>
-          <span className={styles['author-email']}>E-mail: {authorData.email}</span>
-          <span className={styles['author-tel']}>Tel: {authorData.phone}</span>
+      <h3 className={styles.authorName}>{authorData.name}</h3>
+      <div className={styles.authorInfo}>
+        <div className={styles.authorAddress}>Address: {authorData.address.city}, {authorData.address.street}, {authorData.address.suite}</div>
+        <div className={styles.authorContacts}>
+          <span className={styles.authorEmail}>E-mail: {authorData.email}</span>
+          <span className={styles.authorTel}>Tel: {authorData.phone}</span>
         </div>
       </div>
     </>
