@@ -3,12 +3,12 @@
 
   --border-color: rgb(209, 209, 209);
   --link-color: rgb(69, 152, 248);
-  --color-primary-light: #fff;
-  --color-secondary-light: rgb(235, 235, 235);
-  --color-accent-light: rgb(114, 114, 114);
-  --color-primary-dark: rgb(48, 48, 48);
-  --color-secondary-dark: rgb(83, 83, 83);
-  --color-accent-dark: rgb(190, 140, 39);
+  --color-primary-1: #fff;
+  --color-secondary-1: rgb(235, 235, 235);
+  --color-accent-1: rgb(114, 114, 114);
+  --color-primary-2: rgb(48, 48, 48);
+  --color-secondary-2: rgb(83, 83, 83);
+  --color-accent-2: rgb(190, 140, 39);
 }
 
 body {

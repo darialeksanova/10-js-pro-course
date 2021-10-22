@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback} from 'react';
+import React, {useState, useEffect, useCallback, useMemo} from 'react';
 import styles from './App.module.css';
 import { ThemeContext } from './ThemeContext';
 import PostsContainer from 'components/PostsContainer';
@@ -48,7 +48,7 @@ const App = (): JSX.Element => {
     [authors]
   );
 
-  const changeThemeButtonText = useCallback(() => theme === Themes.light ? Themes.dark : Themes.light, [theme]);
+  const changeThemeButtonText = useMemo<Themes>(() => theme === Themes.light ? Themes.dark : Themes.light, [theme]);
 
   return (
     <ThemeContext.Provider value={theme}>
@@ -61,8 +61,7 @@ const App = (): JSX.Element => {
           <>
             <Button 
               onClick={() => setTheme(theme === Themes.light ? Themes.dark : Themes.light)} 
-              text={`${changeThemeButtonText()} mode`}
-              theme={theme}
+              text={`${changeThemeButtonText} mode`}
               size='medium'
             /> 
             <PostsContainer 
@@ -74,7 +73,6 @@ const App = (): JSX.Element => {
             {requestedAuthor && (
             <Modal 
               closeModal={() => setRequestedAuthor(null)}
-              theme={theme}
               size='medium'
             > 
               <AuthorInfo authorData={requestedAuthor}></AuthorInfo>
@@ -83,7 +81,6 @@ const App = (): JSX.Element => {
             <Button 
               onClick={() => setVisiblePostsAmount(prevState => prevState + 5)} 
               text='Show more'
-              theme={theme}
               size='medium'
             />
           </>

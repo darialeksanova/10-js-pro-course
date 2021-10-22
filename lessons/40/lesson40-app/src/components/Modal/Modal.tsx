@@ -1,19 +1,19 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import styles from './Modal.module.css';
 import Button from 'components/Button';
-import { Themes } from 'types/Theme';
+import { ThemeContext } from 'ThemeContext';
 import classNames from 'classnames/bind';
 
 type Props = {
   closeModal: () => void;
   children: JSX.Element;
-  theme: Themes;
   size?: 'small' | 'medium' | 'large';
 }
 
 const cx = classNames.bind(styles);
 
-const Modal = ({closeModal, children, theme, size}: Props): JSX.Element => {
+const Modal = ({closeModal, children, size}: Props): JSX.Element => {
+  const theme = useContext(ThemeContext);
 
   return (
     <div className={styles.overlay}>
@@ -29,7 +29,6 @@ const Modal = ({closeModal, children, theme, size}: Props): JSX.Element => {
           <Button 
             onClick={closeModal} 
             text='Close'
-            theme={theme}
             size='small'
           />
         </div>
