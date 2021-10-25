@@ -9,6 +9,7 @@ import Header from 'components/Header';
 import Posts from 'pages/Posts';
 import Authors from 'pages/Authors';
 import PostDetails from 'pages/PostDetails';
+import NoMatch from 'pages/NoMatch';
 
 const cx = classNames.bind(styles);
 
@@ -40,7 +41,10 @@ const App = (): JSX.Element => {
               <Route exact path='/users'>
                 <Authors setIsDataLoaded={() => setIsDataLoaded(true)}/>
               </Route>
-              <Redirect to='/posts'></Redirect>
+              <Route path='*'>
+                <NoMatch setIsDataLoaded={() => setIsDataLoaded(true)}/>
+              </Route>
+              <Redirect exact from='/' to='/posts'></Redirect>
             </Switch>
           </main>
         </div>
