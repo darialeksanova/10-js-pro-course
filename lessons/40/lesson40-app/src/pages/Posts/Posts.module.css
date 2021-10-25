@@ -1,0 +1,7 @@
+.title {
+  text-align: center;
+}
+
+.dark {
+  color: var(--color-primary-1);
+}

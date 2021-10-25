@@ -1,0 +1,32 @@
+.container {
+  text-align: start;
+}
+
+.title {
+  text-align: center;
+}
+
+.usersList {
+  list-style: none;
+}
+
+.userInfoButton {
+  line-height: 40px;
+  font-size: 20px;
+  border: none;
+  background-color: transparent;
+  padding-top: 4px;
+  color: var(--link-color);
+  cursor: pointer;
+  font-family: var(--font-default);
+  display: block;
+}
+
+.userInfo {
+  padding-left: 100px;
+  color: var(--color-primary-2);
+}
+
+.dark {
+  color: var(--color-primary-1);
+}

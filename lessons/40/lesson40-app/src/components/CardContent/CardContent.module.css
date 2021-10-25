@@ -1,8 +1,15 @@
 .cardContent {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.cardBody {
   margin-bottom: 15px;
 }
 
 .cardAuthorInfo {
+  padding: 0 10px;
   position: absolute;
   left: 0;
   bottom: 0;

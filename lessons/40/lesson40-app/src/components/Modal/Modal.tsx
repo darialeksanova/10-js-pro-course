@@ -3,6 +3,7 @@ import styles from './Modal.module.css';
 import Button from 'components/Button';
 import { ThemeContext } from 'ThemeContext';
 import classNames from 'classnames/bind';
+import { Themes } from 'types/Theme';
 
 type Props = {
   closeModal: () => void;
@@ -20,7 +21,7 @@ const Modal = ({closeModal, children, size}: Props): JSX.Element => {
       <div className={styles.backdrop} onClick={closeModal}></div>
       <div className={cx({
         modal: true,
-        dark: theme === 'dark',
+        dark: theme === Themes.dark,
       }, size)}>
         <div className={styles.modalContent}>
           {children}

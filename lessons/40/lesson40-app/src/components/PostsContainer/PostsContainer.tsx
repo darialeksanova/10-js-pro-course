@@ -19,7 +19,7 @@ const PostsContainer = ({openAuthorInfoModal, visiblePostsAmount, posts, authors
         return (
           <Card 
             key={postsItem.id}
-            size='small'
+            size='medium'
           >
             <CardContent 
               openAuthorInfoModal={(requestedUserId) => openAuthorInfoModal(requestedUserId)} 

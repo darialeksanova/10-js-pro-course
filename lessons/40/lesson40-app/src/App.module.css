@@ -1,9 +1,20 @@
 .App {
   text-align: center;
-  padding: 30px 0 30px 0;
   height: 100vh;
-  overflow-y: auto;
   background-color: var(--color-primary-1);
+  display: flex;
+  flex-grow: 1;
+}
+
+.main {
+  padding: 30px 0 30px 0;
+  width: 100vw;
+  display: none;
+  overflow-y: auto;
+}
+
+.main.visible {
+  display: block;
 }
 
 .dark {

@@ -1,0 +1,17 @@
+.postDetails,
+.postComments {
+  margin: auto;
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.commentsTitle {
+  color: inherit;
+}
+
+.dark {
+  color: var(--color-primary-1);
+}

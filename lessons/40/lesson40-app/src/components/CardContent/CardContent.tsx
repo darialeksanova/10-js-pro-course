@@ -2,6 +2,7 @@ import React, {useCallback} from 'react';
 import styles from './CardContent.module.css';
 import { Post } from 'types/Post';
 import { Author } from 'types/Author';
+import { NavLink } from 'react-router-dom';
 
 type Props = {
   openAuthorInfoModal: (requestedUserId: number) => void;
@@ -20,15 +21,16 @@ const CardContent = ({openAuthorInfoModal, post, authors}: Props): JSX.Element =
   }, [authors, post.userId]);
 
   return (
-    <>
+    <div className={styles.cardContent}>
       <h3 className={styles.cardTitle}>{post.title}</h3>
-      <div className={styles.cardContent}>{post.body}</div>
+      <div className={styles.cardBody}>{post.body}</div>
+      <NavLink to={`/posts/${post.id}`} className={styles.cardPostDetailsButton}>Details</NavLink>
       <div className={styles.cardAuthorInfo}>
         <span>Author: </span>
         <button className={styles.cardAuthorInfoButton} onClick={() => openAuthorInfoModal(post.userId)}>{getAuthorName()}</button>
         {/* <Button onClick={() => openAuthorInfoModal(post.userId)} buttonText={getAuthorName()}/> */}
       </div>
-    </>
+    </div>
   );
 }
 

@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import styles from './Button.module.css';
 import classNames from 'classnames/bind';
 import { ThemeContext } from 'ThemeContext';
+import { Themes } from 'types/Theme';
 
 type Props = {
   text: string;
@@ -18,7 +19,7 @@ const Button = ({ text, size, onClick }: Props): JSX.Element => {
     <button 
       className={cx({
         button: true,
-        dark: theme === 'dark', 
+        dark: theme === Themes.dark, 
     }, size)} 
       onClick={onClick}>{text}
     </button>

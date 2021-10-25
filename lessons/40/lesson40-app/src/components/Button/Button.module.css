@@ -12,16 +12,19 @@
 }
 
 .small {
+  font-size: 11px;
   height: 30px;
   width: 70px;
 }
 
 .medium {
+  font-size: 14px;
   height: 30px;
   width: 90px;
 }
 
 .large {
+  font-size: 16px;
   height: 50px;
   width: 120px;
 }

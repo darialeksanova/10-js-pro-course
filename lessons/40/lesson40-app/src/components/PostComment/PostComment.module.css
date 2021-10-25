@@ -1,0 +1,32 @@
+.postComment {
+  width: 580px;
+  height: 200px;
+  padding: 0 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  margin: 15px 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+}
+
+.commentContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.authorInfo {
+  padding: 10px 15px;
+  color: var(--color-accent-1);
+  width: 100%;
+  border-top: 1px solid var(--border-color);
+}
+
+.dark {
+  color: var(--color-primary-1);
+}
