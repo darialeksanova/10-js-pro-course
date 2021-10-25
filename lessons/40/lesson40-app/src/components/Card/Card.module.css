@@ -1,12 +1,11 @@
 .card {
   width: 200px;
   height: 500px;
-  padding: 15px;
+  padding: 0 15px;
   border: 1px solid var(--border-color);
   border-radius: 5px;
   position: relative;
   margin: 15px 10px;
-  overflow-y: auto;
   display: flex;
 }
 

@@ -24,10 +24,10 @@ const CardContent = ({openAuthorInfoModal, post, authors}: Props): JSX.Element =
     <div className={styles.cardContent}>
       <h3 className={styles.cardTitle}>{post.title}</h3>
       <div className={styles.cardBody}>{post.body}</div>
-      <NavLink to={`/posts/${post.id}`} className={styles.cardPostDetailsButton}>Details</NavLink>
-      <div className={styles.cardAuthorInfo}>
+      <NavLink to={`/posts/${post.id}`} className={styles.postDetailsButton}>Details</NavLink>
+      <div className={styles.authorInfo}>
         <span>Author: </span>
-        <button className={styles.cardAuthorInfoButton} onClick={() => openAuthorInfoModal(post.userId)}>{getAuthorName()}</button>
+        <button className={styles.authorInfoButton} onClick={() => openAuthorInfoModal(post.userId)}>{getAuthorName()}</button>
         {/* <Button onClick={() => openAuthorInfoModal(post.userId)} buttonText={getAuthorName()}/> */}
       </div>
     </div>

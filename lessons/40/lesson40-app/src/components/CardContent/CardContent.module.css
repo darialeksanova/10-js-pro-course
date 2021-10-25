@@ -1,27 +1,31 @@
 .cardContent {
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
 }
 
 .cardBody {
   margin-bottom: 15px;
+  flex-grow: 1;
+  overflow-y: auto;
 }
 
-.cardAuthorInfo {
+.authorInfo {
   padding: 0 10px;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  right: 0;
   height: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
   border-top: 1px solid var(--border-color);
+  flex-shrink: 0;
 }
 
-.cardAuthorInfoButton {
+.postDetailsButton {
+  margin-bottom: 10px;
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+.authorInfoButton {
   border: none;
   background-color: transparent;
   padding-top: 4px;
