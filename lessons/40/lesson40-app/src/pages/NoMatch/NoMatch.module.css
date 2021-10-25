@@ -13,3 +13,8 @@
 .message {
   font-size: 40px;
 }
+
+.dark {
+  background-color: var(--color-primary-2);
+  color: var(--color-primary-1);
+}
