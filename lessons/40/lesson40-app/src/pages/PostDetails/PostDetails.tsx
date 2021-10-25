@@ -56,7 +56,7 @@ const PostDetails = ({ setIsDataLoaded }: Props) => {
         <div className={styles.commentsContent}>
         {
           comments?.map(comment => {
-            return <PostComment comment={comment}/>
+            return <PostComment comment={comment} key={comment.id}/>
           })
         }
         </div>
