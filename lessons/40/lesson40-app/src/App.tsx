@@ -15,16 +15,24 @@ const cx = classNames.bind(styles);
 
 const App = (): JSX.Element => {
   const [isDataLoaded, setIsDataLoaded] = useState(false);
-  const [theme, setTheme] = useState<Themes>(Themes.light);
+  const [theme, setTheme] = useState<Themes>(localStorage.getItem('theme') as Themes || Themes.light);
+
+  const handleThemeChange = () => {
+    setTheme(prevTheme => {
+      const newTheme = prevTheme === Themes.light ? Themes.dark : Themes.light;
+      localStorage.setItem('theme', newTheme);
+      return newTheme;
+    });
+  }
 
   return (
     <Router>
       <ThemeContext.Provider value={theme}>
         <div className={cx({
             App: true,
-            dark: theme === 'dark',
+            dark: theme === Themes.dark,
           })}>
-          <Header handleThemeToggleClick={() => setTheme(prevTheme => prevTheme === Themes.light ? Themes.dark : Themes.light)}/>
+          <Header handleThemeToggleClick={handleThemeChange}/>
           {!isDataLoaded && <Loader />}
           <main className={cx({
             main: true,
