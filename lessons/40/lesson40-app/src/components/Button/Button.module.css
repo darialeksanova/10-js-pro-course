@@ -5,6 +5,7 @@
   border-radius: 3px;
   background-color: var(--color-accent-1);
   color: var(--color-primary-1);
+  cursor: pointer;
 }
 
 .dark {
