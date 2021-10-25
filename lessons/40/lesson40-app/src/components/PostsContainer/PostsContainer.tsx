@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './PostsContainer.module.css';
 import Card from 'components/Card';
 import { Post } from 'types/Post';

@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback, useContext} from 'react';
+import {useState, useEffect, useCallback, useContext} from 'react';
 import PostsContainer from 'components/PostsContainer';
 import Modal from 'components/Modal';
 import Button from 'components/Button';

@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import {useContext} from 'react';
 import styles from './Modal.module.css';
 import Button from 'components/Button';
 import { ThemeContext } from 'ThemeContext';

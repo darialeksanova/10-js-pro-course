@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './AuthorInfo.module.css';
 import { Author } from 'types/Author';
 

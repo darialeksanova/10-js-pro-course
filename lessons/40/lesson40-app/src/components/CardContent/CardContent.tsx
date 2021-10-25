@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import {useCallback} from 'react';
 import styles from './CardContent.module.css';
 import { Post } from 'types/Post';
 import { Author } from 'types/Author';

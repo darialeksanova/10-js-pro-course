@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState, useCallback } from 'react';
+import { useContext, useEffect, useState, useCallback } from 'react';
 import styles from './Authors.module.css'
 import { Author } from 'types/Author';
 import { ThemeContext } from 'ThemeContext';
