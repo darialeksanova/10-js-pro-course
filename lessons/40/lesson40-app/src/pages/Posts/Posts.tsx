@@ -9,6 +9,7 @@ import styles from './Posts.module.css';
 import classNames from 'classnames/bind';
 import { ThemeContext } from 'ThemeContext';
 import { Themes } from 'types/Theme';
+import { useHistory, useLocation } from 'react-router';
 
 type Props = {
   setIsDataLoaded: () => void;
@@ -22,6 +23,8 @@ const Posts = ({ setIsDataLoaded }: Props) => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [authors, setAuthors] = useState<Author[]>([]);
   const theme = useContext(ThemeContext);
+  const location = useLocation();
+  const history = useHistory();
 
   useEffect(() => {
     Promise.all([
@@ -50,6 +53,17 @@ const Posts = ({ setIsDataLoaded }: Props) => {
   [authors]
   );
 
+  const handleShowMoreClick = useCallback((): void => {
+    const query = new URLSearchParams(location.search);
+    const totalPosts = query.get('totalPosts') || '5';
+    const newTotalPosts = parseInt(totalPosts, 10) + 5;
+    query.set('totalPosts', newTotalPosts.toString());
+
+    history.replace(`${location.pathname}?${query.toString()}`);
+
+    setVisiblePostsAmount(prevState => prevState + 5);
+  }, [location, history]);
+
   return (
     <div className={cx({
       container: true,
@@ -71,7 +85,7 @@ const Posts = ({ setIsDataLoaded }: Props) => {
       </Modal>
       )}
       <Button 
-        onClick={() => setVisiblePostsAmount(prevState => prevState + 5)} 
+        onClick={handleShowMoreClick} 
         text='Show more'
         size='medium'
       />

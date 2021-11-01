@@ -24,6 +24,7 @@
 .selected {
   font-size: 26px;
   font-weight: bold;
+  pointer-events: none;
 }
 
 .dark {

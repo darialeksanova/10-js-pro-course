@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import { useParams, useHistory } from 'react-router';
 import { Post } from 'types/Post';
 import styles from './PostDetails.module.css';
 import classNames from 'classnames/bind';
@@ -23,6 +23,7 @@ const PostDetails = ({ setIsDataLoaded }: Props) => {
   const params = useParams<URLParams>();
   const [post, setPost] = useState<Post | null>(null);
   const [comments, setComments] = useState<Comment[] | null>(null);
+  const history = useHistory();
 
   useEffect(() => {
     Promise.all([
@@ -36,8 +37,11 @@ const PostDetails = ({ setIsDataLoaded }: Props) => {
       setComments(comments);
       setIsDataLoaded();
     })
-    .catch(_error => console.log('Sourse is not reachable!'));
-  }, [setIsDataLoaded, params]);
+    .catch(_error => {
+      console.log('Sourse is not reachable!');
+      history.replace('/posts');
+    });
+  }, [setIsDataLoaded, params, history]);
 
   return (
     <>

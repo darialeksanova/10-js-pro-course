@@ -52,8 +52,8 @@ const App = (): JSX.Element => {
               <Route path='*'>
                 <NoMatch setIsDataLoaded={() => setIsDataLoaded(true)}/>
               </Route>
-              <Redirect exact from='/' to='/posts'></Redirect>
             </Switch>
+            <Redirect from='/' to='/posts'></Redirect>
           </main>
         </div>
       </ThemeContext.Provider>
