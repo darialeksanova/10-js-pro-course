@@ -29,9 +29,21 @@ const Posts = ({ setIsDataLoaded }: Props) => {
   useEffect(() => {
     Promise.all([
       fetch(`https://jsonplaceholder.typicode.com/posts`)
-        .then((response):Promise<Post[]> => response.json()),
+        .then((response):Promise<Post[]> => {
+          if (response.ok) {
+            return response.json();
+          }
+
+          throw new Error('Get posts response is not ok!');
+        }),
       fetch(`https://jsonplaceholder.typicode.com/users`)
-        .then((response):Promise<Author[]> => response.json()), 
+        .then((response):Promise<Author[]> => {
+          if (response.ok) {
+            return response.json();
+          }
+
+          throw new Error('Get users response is not ok!');
+        }), 
     ])
     .then(([posts, authors]) => {
       setPosts(posts);

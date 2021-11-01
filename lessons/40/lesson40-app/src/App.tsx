@@ -40,6 +40,9 @@ const App = (): JSX.Element => {
           })}>
 
             <Switch>
+              <Route exact path='/'>
+                <Redirect to='/posts'></Redirect>
+              </Route>
               <Route exact path='/posts'>
                 <Posts setIsDataLoaded={() => setIsDataLoaded(true)}/>
               </Route>
@@ -49,11 +52,10 @@ const App = (): JSX.Element => {
               <Route exact path='/users'>
                 <Authors setIsDataLoaded={() => setIsDataLoaded(true)}/>
               </Route>
-              <Route path='*'>
+              <Route>
                 <NoMatch setIsDataLoaded={() => setIsDataLoaded(true)}/>
               </Route>
             </Switch>
-            <Redirect from='/' to='/posts'></Redirect>
           </main>
         </div>
       </ThemeContext.Provider>

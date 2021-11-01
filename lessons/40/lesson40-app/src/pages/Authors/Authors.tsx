@@ -20,7 +20,13 @@ const Authors = ({ setIsDataLoaded }: Props) => {
 
   useEffect(() => {
     fetch(`https://jsonplaceholder.typicode.com/users`)
-      .then((response):Promise<Author[]> => response.json()) 
+      .then((response):Promise<Author[]> => {
+        if (response.ok) {
+          return response.json();
+        }
+
+        throw new Error('Get users response is not ok!');
+      }) 
       .then( authors => {
         setAuthors(authors);
         setIsDataLoaded();

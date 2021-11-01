@@ -28,9 +28,21 @@ const PostDetails = ({ setIsDataLoaded }: Props) => {
   useEffect(() => {
     Promise.all([
       fetch(`https://jsonplaceholder.typicode.com/posts/${params.postId}`)
-      .then((response): Promise<Post> => response.json()),
+        .then((response): Promise<Post> => {
+          if (response.ok) {
+            return response.json();
+          }
+
+          throw new Error('Get post by id response is not ok!');
+        }),
       fetch(`https://jsonplaceholder.typicode.com/posts/${params.postId}/comments`)
-      .then((response): Promise<Comment[]> => response.json())
+        .then((response): Promise<Comment[]> => {
+          if (response.ok) {
+            return response.json();
+          }
+
+          throw new Error('Get post comments by id response is not ok!');
+        }),
     ])
     .then(([post, comments]) => {
       setPost(post);
