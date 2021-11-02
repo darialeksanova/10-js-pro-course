@@ -18,13 +18,17 @@ type Props = {
 const cx = classNames.bind(styles);
 
 const Posts = ({ setIsDataLoaded }: Props) => {
-  const [requestedAuthor, setRequestedAuthor] = useState<Author | null>(null);
-  const [visiblePostsAmount, setVisiblePostsAmount] = useState(5);
-  const [posts, setPosts] = useState<Post[]>([]);
-  const [authors, setAuthors] = useState<Author[]>([]);
   const theme = useContext(ThemeContext);
   const location = useLocation();
   const history = useHistory();
+  
+  const query = new URLSearchParams(location.search);
+  const totalPosts = query.get('totalPosts') || '5';
+
+  const [visiblePostsAmount, setVisiblePostsAmount] = useState(Number(totalPosts));
+  const [requestedAuthor, setRequestedAuthor] = useState<Author | null>(null);
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [authors, setAuthors] = useState<Author[]>([]);
 
   useEffect(() => {
     Promise.all([
@@ -52,6 +56,8 @@ const Posts = ({ setIsDataLoaded }: Props) => {
     })
     .catch(_error => console.log('Sourse is not reachable!'));
   }, [setIsDataLoaded]);
+
+  
 
   const openAuthorInfoModal = useCallback((requestedAuthorId: number): void => {
     const requestedAuthor = authors.find((author) => author.id === requestedAuthorId);
