@@ -8,7 +8,9 @@ type Props = {
   openAuthorInfoModal: (requestedUserID: number) => void;
   visiblePostsAmount: number;
   posts: Post[];
-  authors: Author[];
+  authors: {
+    [id: string]: Author,
+  };
 }
 
 const PostsContainer = ({openAuthorInfoModal, visiblePostsAmount, posts, authors}: Props): JSX.Element => {

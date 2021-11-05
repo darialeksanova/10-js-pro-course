@@ -7,13 +7,15 @@ import { NavLink } from 'react-router-dom';
 type Props = {
   openAuthorInfoModal: (requestedUserId: number) => void;
   post: Post;
-  authors: Author[];
+  authors: {
+    [id: string]: Author,
+  };
 }
 
 const CardContent = ({openAuthorInfoModal, post, authors}: Props): JSX.Element => {
 
   const getAuthorName = useCallback((): string => {
-    const requestedUser = authors.find(author => post.userId === author.id);
+    const requestedUser = authors[post.userId];
     if (requestedUser) {
       return requestedUser?.name;
     }

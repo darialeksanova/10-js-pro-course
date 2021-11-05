@@ -28,7 +28,7 @@ const Posts = ({ setIsDataLoaded }: Props) => {
   const [visiblePostsAmount, setVisiblePostsAmount] = useState(Number(totalPosts));
   const [requestedAuthor, setRequestedAuthor] = useState<Author | null>(null);
   const [posts, setPosts] = useState<Post[]>([]);
-  const [authors, setAuthors] = useState<Author[]>([]);
+  const [authors, setAuthors] = useState<{[id: string]: Author}>({});
 
   useEffect(() => {
     Promise.all([
@@ -50,8 +50,13 @@ const Posts = ({ setIsDataLoaded }: Props) => {
         }), 
     ])
     .then(([posts, authors]) => {
+      const authorsMap = authors.reduce((acc, author) => ({
+        ...acc,
+        [author.id]: author,
+      }), {});
+
       setPosts(posts);
-      setAuthors(authors);
+      setAuthors(authorsMap);
       setIsDataLoaded();
     })
     .catch(_error => console.log('Sourse is not reachable!'));
@@ -60,7 +65,7 @@ const Posts = ({ setIsDataLoaded }: Props) => {
   
 
   const openAuthorInfoModal = useCallback((requestedAuthorId: number): void => {
-    const requestedAuthor = authors.find((author) => author.id === requestedAuthorId);
+    const requestedAuthor = authors[requestedAuthorId];
   
     if (requestedAuthor === undefined) {
       throw new Error('Author not found!');
