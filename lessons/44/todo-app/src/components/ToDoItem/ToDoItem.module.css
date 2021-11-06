@@ -1,0 +1,37 @@
+.toDoItem {
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  margin-bottom: 10px;
+}
+
+.toDoItemText {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.toDoItemActions {
+  display: flex;
+}
+
+.toDoButton {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15px;
+  height: 15px;
+  margin-left: 7px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.editIcon,
+.deleteIcon {
+  /* width: 80%; */
+  height: 100%;
+}

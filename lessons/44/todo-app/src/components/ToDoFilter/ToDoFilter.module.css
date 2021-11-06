@@ -1,0 +1,15 @@
+.toDoFilter {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.toDoButton {
+  width: 185px;
+  height: 30px;
+  background-color: var(--color-primary);
+  border: none;
+  border-radius: 3px;
+  color: white;
+  cursor: pointer;
+}

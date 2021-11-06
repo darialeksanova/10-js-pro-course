@@ -1,0 +1,52 @@
+.toDoInputComponent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.toDoInputWrapper {
+  padding: 15px;
+  width: 600px;
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+}
+
+.toDoInputContainer {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+}
+
+.toDoInputIconContainer {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--color-border);
+  border-right: none;
+  background-color: var(--color-primary);
+}
+
+.toDoInputIcon {
+  width: 50%;
+  height: 50%;
+}
+
+.toDoInput {
+  flex-grow: 1;
+  height: 30px;
+  border: 1px solid var(--color-border);
+  padding: 10px;
+}
+
+.addTaskButton {
+  width: 100%;
+  height: 30px;
+  background-color: var(--color-primary);
+  border: none;
+  border-radius: 3px;
+  color: white;
+  cursor: pointer;
+}

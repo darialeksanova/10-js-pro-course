@@ -1,0 +1,20 @@
+.toDoList {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.toDoListActions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.toDoListButton {
+  width: 290px;
+  height: 30px;
+  background-color: var(--color-warning);
+  border: none;
+  border-radius: 3px;
+  color: white;
+  cursor: pointer;
+}

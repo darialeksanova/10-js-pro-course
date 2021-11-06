@@ -1,3 +1,17 @@
+:root {
+  --color-primary: rgb(28, 173, 199);
+  --color-warning: rgb(233, 42, 74);
+  --color-border: rgb(223, 222, 222);
+}
+
 .App {
+  margin: 0 auto;
+  padding: 15px 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  flex-grow: 1;
+  width: 600px;
+  height: 100vh;
   text-align: center;
 }

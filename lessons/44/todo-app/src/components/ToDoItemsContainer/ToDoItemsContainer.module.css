@@ -1,0 +1,8 @@
+.toDoItemsContainer {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin-bottom: 30px;
+  /* min-height: 0;
+  overflow-y: auto; */
+}
