@@ -1,5 +1,6 @@
 :root {
   --color-primary: rgb(28, 173, 199);
+  --color-primary-hovered: rgb(15, 111, 128);
   --color-warning: rgb(233, 42, 74);
   --color-border: rgb(223, 222, 222);
 }

@@ -8,13 +8,14 @@
   margin-bottom: 10px;
 }
 
-.toDoItemText {
+.toDoItemContent {
   font-size: 12px;
   font-weight: 700;
 }
 
 .toDoItemActions {
   display: flex;
+  align-items: center;
 }
 
 .toDoButton {
@@ -28,10 +29,28 @@
   border: none;
   background-color: transparent;
   cursor: pointer;
+  padding: 0;
 }
 
 .editIcon,
 .deleteIcon {
-  /* width: 80%; */
+  width: 100%;
   height: 100%;
+}
+
+.editTaskInput {
+  width: 450px;
+  height: 22px;
+  border: 1px solid var(--color-border);
+}
+
+.saveTodoButton {
+  border: none;
+  border-radius: 3px;
+  background-color: var(--color-primary);
+  color: white;
+  font-size: 12px;
+  width: 40px;
+  height: 21px;
+  margin-left: 5px;
 }

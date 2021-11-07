@@ -1,7 +1,12 @@
 .toDoFilter {
   display: flex;
+  flex-direction: column;
+}
+
+.toDoFilterActions {
+  display: flex;
   justify-content: space-between;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
 .toDoButton {
@@ -12,4 +17,9 @@
   border-radius: 3px;
   color: white;
   cursor: pointer;
+}
+
+.selected {
+  pointer-events: none;
+  background-color: var(--color-primary-hovered);
 }

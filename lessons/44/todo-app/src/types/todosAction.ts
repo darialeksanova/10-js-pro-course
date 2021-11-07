@@ -1,0 +1,7 @@
+export enum TodosAction {
+  ADD_TODO = 'ADD_TODO',
+  EDIT_TODO = 'EDIT_TODO',
+  DELETE_TODO = 'DELETE_TODO',
+  DELETE_ALL = 'DELETE_ALL',
+  DELETE_DONE = 'DELETE_DONE',
+}
