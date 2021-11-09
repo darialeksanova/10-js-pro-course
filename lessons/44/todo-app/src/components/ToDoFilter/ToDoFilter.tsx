@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'store/store';
 import { FilterAction } from 'types/filterAction';
@@ -10,29 +10,25 @@ const cx = classNames.bind(styles);
 
 const ToDoFilter = () => {
   const currentFilter = useSelector((state: RootState) => state.filter.currentFilter);
-  const [currentFilterName, setCurrentFilterName] = useState<string>('All tasks');
   const dispatch = useDispatch();
 
-  const handleShowAll = () => {
-    setCurrentFilterName('All tasks');
+  const handleShowAll = useCallback(() => {
     dispatch({
       type: FilterAction.SHOW_ALL,
     });
-  }
+  }, [dispatch]);
 
-  const handleShowDone = () => {
-    setCurrentFilterName('Done tasks');
+  const handleShowDone = useCallback(() => {
     dispatch({
       type: FilterAction.SHOW_DONE,
     });
-  }
+  }, [dispatch]);
 
-  const handleShowTodo = () => {
-    setCurrentFilterName('Tasks to do');
+  const handleShowTodo = useCallback(() => {
     dispatch({
       type: FilterAction.SHOW_TODO,
     });
-  }
+  }, [dispatch]);
 
   return (
     <div className={styles.toDoFilter}>
@@ -61,7 +57,9 @@ const ToDoFilter = () => {
           onClick={handleShowTodo}
         >Todo</button>
       </div>
-      <h4 className={styles.toDoFilterName}>{currentFilterName}:</h4>
+      {currentFilter === FilterValue.ALL && <h4 className={styles.toDoFilterName}>All tasks:</h4>}
+      {currentFilter === FilterValue.DONE && <h4 className={styles.toDoFilterName}>Done tasks:</h4>}
+      {currentFilter === FilterValue.TODO && <h4 className={styles.toDoFilterName}>Tasks to do:</h4>}
     </div>
   );
 }

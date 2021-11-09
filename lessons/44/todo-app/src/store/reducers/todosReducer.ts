@@ -1,11 +1,12 @@
-import { AnyAction, Reducer } from "redux";
+import { Action, Reducer } from "redux";
 import { TodoItem } from "types/todoItem";
 import { TodosAction } from 'types/todosAction';
+import { v4 as uuid} from 'uuid';
 
-// export type ActionPayLoad<Payload> = {
-//   type: TodosAction;
-//   payload?: Payload;
-// }
+export type ActionPayLoad<TType, PType> = {
+  type: TType;
+  payload: PType;
+};
 
 export type TodosState = {
   todos: TodoItem[],
@@ -16,27 +17,58 @@ let todos: TodoItem[] = [];
 
 if (todosAsString !== null) {
   todos = JSON.parse(todosAsString);
-}
+};
 
 const initialState: TodosState = {
   todos: todos,
 };
 
-export const todosReducer: Reducer<TodosState, AnyAction> = (state: TodosState = initialState, action: AnyAction) => {
+type AddTodoAction = ActionPayLoad<TodosAction.ADD_TODO, TodoItem>;
+type EditTodoAction = ActionPayLoad<TodosAction.EDIT_TODO, TodoItem>;
+type DeleteTodoAction = ActionPayLoad<TodosAction.DELETE_TODO, string>;
+type DeleteAllTodosAction = Action<TodosAction.DELETE_ALL>;
+type DeleteDoneTodosAction = Action<TodosAction.DELETE_DONE>;
+
+export const addTodo = (content: string): AddTodoAction => ({
+  type: TodosAction.ADD_TODO,
+  payload: {
+    id: uuid(),
+    content,
+    isDone: false,
+  },
+});
+
+export const editTodo = (editedTodo: TodoItem): EditTodoAction => ({
+  type: TodosAction.EDIT_TODO,
+  payload: editedTodo,
+});
+
+export const deleteTodo = (id: string): DeleteTodoAction => ({
+  type: TodosAction.DELETE_TODO,
+  payload: id,
+});
+
+export const deleteAllTodos = (): DeleteAllTodosAction => ({
+  type: TodosAction.DELETE_ALL,
+});
+
+export const deleteDoneTodos = (): DeleteDoneTodosAction => ({
+  type: TodosAction.DELETE_DONE,
+});
+
+type ReducerAction = AddTodoAction
+  | EditTodoAction
+  | DeleteTodoAction
+  | DeleteAllTodosAction
+  | DeleteDoneTodosAction;
+
+export const todosReducer: Reducer<TodosState, ReducerAction> = (state: TodosState = initialState, action: ReducerAction) => {
   switch(action.type) {
     case TodosAction.ADD_TODO: {
       const newTodos = {
         ...state,
-        todos: [
-          ...state.todos,
-          {
-            id: Date.now(),
-            content: action.payload,
-            isDone: false,
-          }
-        ],
+        todos: [ ...state.todos, action.payload ],
       };
-      localStorage.setItem('todos', JSON.stringify(newTodos.todos));
 
       return newTodos;
     }
@@ -46,7 +78,6 @@ export const todosReducer: Reducer<TodosState, AnyAction> = (state: TodosState =
         ...state, 
         todos: state.todos.map(todo => (todo.id !== action.payload.id)? todo : { ...action.payload }),
       };
-      localStorage.setItem('todos', JSON.stringify(newTodos.todos));
 
       return newTodos;
     }
@@ -55,8 +86,7 @@ export const todosReducer: Reducer<TodosState, AnyAction> = (state: TodosState =
       const newTodos = {
         ...state,
         todos: state.todos.filter(todo => todo.id !== action.payload),
-      }
-      localStorage.setItem('todos', JSON.stringify(newTodos.todos));
+      };
 
       return newTodos;
     }
@@ -64,9 +94,8 @@ export const todosReducer: Reducer<TodosState, AnyAction> = (state: TodosState =
     case TodosAction.DELETE_DONE: {
       const newTodos = {
         ...state,
-        todos: state.todos.filter(todo => todo.isDone === false),
+        todos: state.todos.filter(todo => !todo.isDone),
       };
-      localStorage.setItem('todos', JSON.stringify(newTodos.todos));
 
       return newTodos;
     }

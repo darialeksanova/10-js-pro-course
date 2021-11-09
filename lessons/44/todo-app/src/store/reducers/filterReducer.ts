@@ -1,4 +1,4 @@
-import { AnyAction, Reducer } from 'redux';
+import { Action, Reducer } from 'redux';
 import { FilterValue } from 'types/filterValue';
 import { FilterAction } from 'types/filterAction';
 
@@ -10,7 +10,7 @@ const inititalState: FilterState = {
   currentFilter: FilterValue.ALL,
 };
 
-export const filterReducer: Reducer<FilterState, AnyAction> = (state: FilterState = inititalState, action: AnyAction) => {
+export const filterReducer: Reducer<FilterState, Action> = (state: FilterState = inititalState, action: Action) => {
   switch(action.type) {
     case FilterAction.SHOW_ALL: {
       return {

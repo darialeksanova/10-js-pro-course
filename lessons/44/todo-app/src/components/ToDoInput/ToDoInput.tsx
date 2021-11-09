@@ -1,24 +1,25 @@
-import { useState } from 'react';
+import { ChangeEvent, useCallback, useState } from 'react';
 import styles from './ToDoInput.module.css';
 import todoInputIcon from 'assets/todoInputIcon.svg';
 import { useDispatch } from 'react-redux';
-import { TodosAction } from 'types/todosAction';
-
-// type Props = {
-//   addNewTask: (inputValue: string) => void;
-// };
+import { addTodo } from 'store/reducers/todosReducer';
 
 const ToDoInput = () => {
   const [inputValue, setInputValue] = useState('');
+  const [isAddButtonDisabled, setIsAddButtonDisabled] = useState(true);
   const dispatch = useDispatch();
 
-  const handleAddTaskButtonClick = () => {
-    dispatch({
-      type: TodosAction.ADD_TODO,
-      payload: inputValue,
-    });
+  const handleAddTaskButtonClick = useCallback(() => {
+    dispatch(addTodo(inputValue));
     setInputValue('');
-  };
+    setIsAddButtonDisabled(true);
+  }, [dispatch, inputValue]);
+
+  const handleInputValueChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+    const targetValue = event.target.value;
+    setInputValue(targetValue);
+    setIsAddButtonDisabled(targetValue.trim() === '');
+  }, []);
 
   return (
     <div className={styles.toDoInputComponent}>
@@ -28,9 +29,9 @@ const ToDoInput = () => {
           <div className={styles.toDoInputIconContainer}>
             <img className={styles.toDoInputIcon} src={todoInputIcon} alt="input-icon"/>
           </div>
-          <input className={styles.toDoInput} type='text' placeholder='New Todo' value={inputValue} onChange={(event) => setInputValue(event.target.value)}></input>
+          <input className={styles.toDoInput} type='text' placeholder='New Todo' value={inputValue} onChange={handleInputValueChange}></input>
         </div>
-          <button className={styles.addTaskButton} onClick={handleAddTaskButtonClick}>Add new task</button>
+          <button className={styles.addTaskButton} disabled={isAddButtonDisabled} onClick={handleAddTaskButtonClick}>Add new task</button>
       </div>
     </div>
   );

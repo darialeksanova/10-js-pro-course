@@ -1,4 +1,5 @@
 import ToDoItem from 'components/ToDoItem';
+import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from 'store/store';
 import { FilterValue } from 'types/filterValue';
@@ -9,7 +10,7 @@ const ToDoItemsContainer = () => {
   const todos = useSelector((state: RootState) => state.todos.todos);
   const currentFilter = useSelector((state: RootState) => state.filter.currentFilter);
 
-  const filterTodos = (todos: TodoItem[], currentFilter: FilterValue): TodoItem[] => {
+  const filterTodos = useMemo(() => (todos: TodoItem[], currentFilter: FilterValue): TodoItem[] => {
     if (currentFilter === FilterValue.ALL) {
       return todos;
     }
@@ -20,7 +21,7 @@ const ToDoItemsContainer = () => {
       return todos.filter(todo => !todo.isDone);
     }
     return todos;
-  }
+  }, []);
 
   return (
     <div className={styles.toDoItemsContainer}>

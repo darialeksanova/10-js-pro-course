@@ -1,10 +1,11 @@
-import { SyntheticEvent, useState } from 'react';
+import { ChangeEvent, useCallback, useState } from 'react';
 import styles from './ToDoItem.module.css';
 import editTodoIcon from 'assets/editTodoIcon.svg';
 import deleteTodoIcon from 'assets/deleteTodoIcon.svg';
 import { TodoItem } from 'types/todoItem';
 import { useDispatch } from 'react-redux';
-import { TodosAction } from 'types/todosAction';
+import { editTodo } from 'store/reducers/todosReducer';
+import { deleteTodo } from 'store/reducers/todosReducer';
 
 type Props = {
   todo: TodoItem;
@@ -15,40 +16,27 @@ const ToDoItem = ({ todo }: Props) => {
   const [isInEdition, setIsInEdition] = useState(false);
   const dispatch = useDispatch();
 
-  const handleIsDoneChange = (event: SyntheticEvent) => {
-    if (event.target instanceof HTMLInputElement) {
-      dispatch({
-        type: TodosAction.EDIT_TODO,
-        payload: {...todo, isDone: event.target.checked},
-      });
-    }
-  };
+  const handleIsDoneChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+    dispatch(editTodo({...todo, isDone: event.target.checked}));
+  }, [dispatch, todo]);
 
-  const handleEditTaskButtonClick = () => {
+  const handleEditTaskButtonClick = useCallback(() => {
     setEditTaskInputValue(todo.content);
     setIsInEdition(true);
-  };
+  }, [todo.content]);
 
-  const handleEditTaskInputChange = (event: SyntheticEvent) => {
-    if (event.target instanceof HTMLInputElement) {
-      setEditTaskInputValue(event.target.value);
-    }
-  };
+  const handleEditTaskInputChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+    setEditTaskInputValue(event.target.value);
+  }, []);
 
-  const handleTaskEdit = () => {
-    dispatch({
-      type: TodosAction.EDIT_TODO,
-      payload: {...todo, content: editTaskInputValue},
-    });
+  const handleTaskEdit = useCallback(() => {
+    dispatch(editTodo({...todo, content: editTaskInputValue}));
     setIsInEdition(false);
-  };
+  }, [dispatch, editTaskInputValue, todo]);
 
-  const handleDeleteTaskButtonClick = () => {
-    dispatch({
-      type: TodosAction.DELETE_TODO,
-      payload: todo.id,
-    });
-  };
+  const handleDeleteTaskButtonClick = useCallback(() => {
+    dispatch(deleteTodo(todo.id));
+  }, [dispatch, todo.id]);
 
   return (
     <div className={styles.toDoItem}>
