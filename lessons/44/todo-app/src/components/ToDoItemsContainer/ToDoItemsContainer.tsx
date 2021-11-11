@@ -10,7 +10,7 @@ const ToDoItemsContainer = () => {
   const todos = useSelector((state: RootState) => state.todos.todos);
   const currentFilter = useSelector((state: RootState) => state.filter.currentFilter);
 
-  const filterTodos = useMemo(() => (todos: TodoItem[], currentFilter: FilterValue): TodoItem[] => {
+  const filterTodos = (todos: TodoItem[], currentFilter: FilterValue): TodoItem[] => {
     if (currentFilter === FilterValue.ALL) {
       return todos;
     }
@@ -21,11 +21,11 @@ const ToDoItemsContainer = () => {
       return todos.filter(todo => !todo.isDone);
     }
     return todos;
-  }, []);
+  };
 
   return (
     <div className={styles.toDoItemsContainer}>
-      {filterTodos(todos, currentFilter).map(todo => {
+      {useMemo(() => filterTodos(todos, currentFilter), [todos, currentFilter]).map(todo => {
         return <ToDoItem key={todo.id} todo={todo} />
       })}
     </div>
