@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState, useCallback } from 'react';
+import { useContext, useState, useCallback, useEffect } from 'react';
 import styles from './Authors.module.css'
 import { Author } from 'types/Author';
 import { ThemeContext } from 'ThemeContext';
@@ -6,33 +6,21 @@ import classNames from 'classnames/bind';
 import Modal from 'components/Modal';
 import AuthorInfo from 'components/AuthorInfo';
 import { Themes } from 'types/Theme';
-
-type Props = {
-  setIsDataLoaded: () => void;
-};
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'store/store';
+import { setIsDataLoaded } from 'store/reducers/dataLoadedReducer';
 
 const cx = classNames.bind(styles);
 
-const Authors = ({ setIsDataLoaded }: Props) => {
-  const [authors, setAuthors] = useState<Author[]>([]);
+const Authors = () => {
+  const authors = useSelector((state: RootState) => state.authors.authors);
   const [requestedAuthor, setRequestedAuthor] = useState<Author | null>(null);
   const theme = useContext(ThemeContext);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    fetch(`https://jsonplaceholder.typicode.com/users`)
-      .then((response):Promise<Author[]> => {
-        if (response.ok) {
-          return response.json();
-        }
-
-        throw new Error('Get users response is not ok!');
-      }) 
-      .then( authors => {
-        setAuthors(authors);
-        setIsDataLoaded();
-      })
-    .catch(_error => console.log('Sourse is not reachable!'));
-  }, [setIsDataLoaded]);
+    dispatch(setIsDataLoaded());
+  }, [dispatch]);
 
   const openAuthorInfoModal = useCallback((authorId: number): void => {
     const requestedAuthor = authors.find((author) => author.id === authorId);
@@ -52,10 +40,10 @@ const Authors = ({ setIsDataLoaded }: Props) => {
       dark: theme === Themes.dark,
     })}>
       <h1 className={styles.title}>USERS</h1>
-      <ul className={styles.usersList}>
+      <ul className={styles.authorsList}>
         {authors.map(author => {
           return (
-            <button key={author.id} className={styles.userInfoButton} onClick={() => openAuthorInfoModal(author.id)}>{author.name}</button>
+            <button key={author.id} className={styles.authorInfoButton} onClick={() => openAuthorInfoModal(author.id)}>{author.name}</button>
         )})}
       </ul>
       {requestedAuthor && (

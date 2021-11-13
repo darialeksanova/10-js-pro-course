@@ -6,11 +6,11 @@
   text-align: center;
 }
 
-.usersList {
+.authorList {
   list-style: none;
 }
 
-.userInfoButton {
+.authorInfoButton {
   line-height: 40px;
   font-size: 20px;
   border: none;
@@ -22,10 +22,10 @@
   display: block;
 }
 
-.userInfo {
+/* .authorInfo {
   padding-left: 100px;
   color: var(--color-primary-2);
-}
+} */
 
 .dark {
   color: var(--color-primary-1);

@@ -1,16 +1,14 @@
 import { useContext, useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router';
-import { Post } from 'types/Post';
 import styles from './PostDetails.module.css';
 import classNames from 'classnames/bind';
 import { Comment } from 'types/Comment';
 import PostComment from 'components/PostComment';
 import { ThemeContext } from 'ThemeContext';
 import { Themes } from 'types/Theme';
-
-type Props = {
-  setIsDataLoaded: () => void;
-};
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'store/store';
+import { setIsDataLoaded } from 'store/reducers/dataLoadedReducer';
 
 type URLParams = {
   postId: string;
@@ -18,42 +16,35 @@ type URLParams = {
 
 const cx = classNames.bind(styles);
 
-const PostDetails = ({ setIsDataLoaded }: Props) => {
+const PostDetails = () => {
+  const posts = useSelector((state: RootState) => state.posts.posts);
   const theme = useContext(ThemeContext);
   const params = useParams<URLParams>();
-  const [post, setPost] = useState<Post | null>(null);
+  const selectedPost = posts.find(post => post.id === Number(params.postId));
   const [comments, setComments] = useState<Comment[] | null>(null);
   const history = useHistory();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    Promise.all([
-      fetch(`https://jsonplaceholder.typicode.com/posts/${params.postId}`)
-        .then((response): Promise<Post> => {
-          if (response.ok) {
-            return response.json();
-          }
-
-          throw new Error('Get post by id response is not ok!');
-        }),
-      fetch(`https://jsonplaceholder.typicode.com/posts/${params.postId}/comments`)
+    if (selectedPost) {
+      fetch(`https://jsonplaceholder.typicode.com/posts/${selectedPost.id}/comments`)
         .then((response): Promise<Comment[]> => {
           if (response.ok) {
             return response.json();
           }
 
           throw new Error('Get post comments by id response is not ok!');
-        }),
-    ])
-    .then(([post, comments]) => {
-      setPost(post);
-      setComments(comments);
-      setIsDataLoaded();
-    })
-    .catch(_error => {
-      console.log('Sourse is not reachable!');
-      history.replace('/posts');
-    });
-  }, [setIsDataLoaded, params, history]);
+        })
+      .then((comments) => {
+        setComments(comments);
+        dispatch(setIsDataLoaded());
+      })
+      .catch(_error => {
+        console.log('Sourse is not reachable!');
+        history.replace('/posts');
+      });
+    }
+  }, [params, history, selectedPost, dispatch]);
 
   return (
     <>
@@ -61,8 +52,8 @@ const PostDetails = ({ setIsDataLoaded }: Props) => {
         postDetails: true,
         dark: theme === Themes.dark,
       })}>
-        <h1 className={styles.postTitle}>{post?.title}</h1>
-        <div className={styles.postContent}>{post?.body}</div>
+        <h1 className={styles.postTitle}>{selectedPost?.title}</h1>
+        <div className={styles.postContent}>{selectedPost?.body}</div>
       </div>
       <div className={cx({
         postComments: true,

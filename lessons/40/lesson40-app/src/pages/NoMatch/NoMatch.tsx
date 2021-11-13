@@ -3,19 +3,18 @@ import styles from './NoMatch.module.css';
 import classNames from 'classnames/bind';
 import { Themes } from 'types/Theme';
 import { ThemeContext } from 'ThemeContext';
-
-type Props = {
-  setIsDataLoaded: () => void;
-}
+import { setIsDataLoaded } from 'store/reducers/dataLoadedReducer';
+import { useDispatch } from 'react-redux';
 
 const cx = classNames.bind(styles);
 
-const NoMatch = ({ setIsDataLoaded }: Props) => {
+const NoMatch = () => {
   const theme = useContext(ThemeContext);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    setIsDataLoaded();
-  }, [setIsDataLoaded]);
+    dispatch(setIsDataLoaded());
+  }, [dispatch]);
 
   return (
     <div className={cx({

@@ -1,18 +1,17 @@
 import {useCallback} from 'react';
 import styles from './CardContent.module.css';
 import { Post } from 'types/Post';
-import { Author } from 'types/Author';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from 'store/store';
 
 type Props = {
   openAuthorInfoModal: (requestedUserId: number) => void;
   post: Post;
-  authors: {
-    [id: string]: Author,
-  };
 }
 
-const CardContent = ({openAuthorInfoModal, post, authors}: Props): JSX.Element => {
+const CardContent = ({openAuthorInfoModal, post}: Props): JSX.Element => {
+  const authors = useSelector((state: RootState) => state.authors.authors);
 
   const getAuthorName = useCallback((): string => {
     const requestedUser = authors[post.userId];

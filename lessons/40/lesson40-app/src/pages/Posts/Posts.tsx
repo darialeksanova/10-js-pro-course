@@ -10,25 +10,26 @@ import classNames from 'classnames/bind';
 import { ThemeContext } from 'ThemeContext';
 import { Themes } from 'types/Theme';
 import { useHistory, useLocation } from 'react-router';
-
-type Props = {
-  setIsDataLoaded: () => void;
-};
+import { useDispatch, useSelector } from 'react-redux';
+import { setPosts } from 'store/reducers/postsReducer';
+import { setAuthors } from 'store/reducers/authorsReducer';
+import { setIsDataLoaded } from 'store/reducers/dataLoadedReducer';
+import { RootState } from 'store/store';
 
 const cx = classNames.bind(styles);
 
-const Posts = ({ setIsDataLoaded }: Props) => {
+const Posts = () => {
   const theme = useContext(ThemeContext);
   const location = useLocation();
   const history = useHistory();
+  const dispatch = useDispatch();
+  const authors = useSelector((state: RootState) => state.authors.authors);
   
   const query = new URLSearchParams(location.search);
   const totalPosts = query.get('totalPosts') || '5';
 
   const [visiblePostsAmount, setVisiblePostsAmount] = useState(Number(totalPosts));
   const [requestedAuthor, setRequestedAuthor] = useState<Author | null>(null);
-  const [posts, setPosts] = useState<Post[]>([]);
-  const [authors, setAuthors] = useState<{[id: string]: Author}>({});
 
   useEffect(() => {
     Promise.all([
@@ -50,19 +51,12 @@ const Posts = ({ setIsDataLoaded }: Props) => {
         }), 
     ])
     .then(([posts, authors]) => {
-      const authorsMap = authors.reduce((acc, author) => ({
-        ...acc,
-        [author.id]: author,
-      }), {});
-
-      setPosts(posts);
-      setAuthors(authorsMap);
-      setIsDataLoaded();
+      dispatch(setPosts(posts));
+      dispatch(setAuthors(authors));
+      dispatch(setIsDataLoaded());
     })
     .catch(_error => console.log('Sourse is not reachable!'));
-  }, [setIsDataLoaded]);
-
-  
+  }, [dispatch]);
 
   const openAuthorInfoModal = useCallback((requestedAuthorId: number): void => {
     const requestedAuthor = authors[requestedAuthorId];
@@ -96,8 +90,6 @@ const Posts = ({ setIsDataLoaded }: Props) => {
       <PostsContainer 
         openAuthorInfoModal={(requestedUserId) => openAuthorInfoModal(requestedUserId)} 
         visiblePostsAmount={visiblePostsAmount}
-        posts={posts}
-        authors={authors}
       />
       {requestedAuthor && (
       <Modal 

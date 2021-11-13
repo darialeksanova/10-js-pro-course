@@ -1,31 +1,28 @@
 import styles from './PostsContainer.module.css';
 import Card from 'components/Card';
-import { Post } from 'types/Post';
-import { Author } from 'types/Author';
 import CardContent from 'components/CardContent';
+import { useSelector } from 'react-redux';
+import { RootState } from 'store/store';
 
 type Props = {
   openAuthorInfoModal: (requestedUserID: number) => void;
   visiblePostsAmount: number;
-  posts: Post[];
-  authors: {
-    [id: string]: Author,
-  };
 }
 
-const PostsContainer = ({openAuthorInfoModal, visiblePostsAmount, posts, authors}: Props): JSX.Element => {
+const PostsContainer = ({openAuthorInfoModal, visiblePostsAmount}: Props): JSX.Element => {
+  const posts = useSelector((state: RootState) => state.posts.posts);
+
   return (
     <div className={styles.postsСontainer}>
-      {posts.slice(0, visiblePostsAmount).map(postsItem => {
+      {posts.slice(0, visiblePostsAmount).map(post => {
         return (
           <Card 
-            key={postsItem.id}
+            key={post.id}
             size='medium'
           >
             <CardContent 
               openAuthorInfoModal={(requestedUserId) => openAuthorInfoModal(requestedUserId)} 
-              post={postsItem}
-              authors={authors}
+              post={post}
             />
           </Card>
         ) 

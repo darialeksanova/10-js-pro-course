@@ -10,11 +10,13 @@ import Posts from 'pages/Posts';
 import Authors from 'pages/Authors';
 import PostDetails from 'pages/PostDetails';
 import NoMatch from 'pages/NoMatch';
+import { useSelector } from 'react-redux';
+import { RootState } from 'store/store';
 
 const cx = classNames.bind(styles);
 
 const App = (): JSX.Element => {
-  const [isDataLoaded, setIsDataLoaded] = useState(false);
+  const isDataLoaded = useSelector((state: RootState) => state.isDataLoaded.isDataLoaded);
   const [theme, setTheme] = useState<Themes>(localStorage.getItem('theme') as Themes || Themes.light);
 
   const handleThemeChange = () => {
@@ -44,16 +46,16 @@ const App = (): JSX.Element => {
                 <Redirect to='/posts'></Redirect>
               </Route>
               <Route exact path='/posts'>
-                <Posts setIsDataLoaded={() => setIsDataLoaded(true)}/>
+                <Posts />
               </Route>
               <Route exact path='/posts/:postId'>
-                <PostDetails setIsDataLoaded={() => setIsDataLoaded(true)}/>
+                <PostDetails />
               </Route>
               <Route exact path='/users'>
-                <Authors setIsDataLoaded={() => setIsDataLoaded(true)}/>
+                <Authors />
               </Route>
               <Route>
-                <NoMatch setIsDataLoaded={() => setIsDataLoaded(true)}/>
+                <NoMatch />
               </Route>
             </Switch>
           </main>
