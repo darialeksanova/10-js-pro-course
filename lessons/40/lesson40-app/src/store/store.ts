@@ -1,15 +1,18 @@
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { postsReducer } from 'store/reducers/postsReducer';
-import { authorsReducer } from 'store/reducers/authorsReducer';
-import { dataLoadedReducer } from 'store/reducers/dataLoadedReducer';
+import { postsReducer } from 'store/posts/postsReducer';
+import { authorsReducer } from 'store/authors/authorsReducer';
+import thunk from 'redux-thunk';
 
 const rootReducer = combineReducers({
   posts: postsReducer,
+  arePostsLoaded: postsReducer,
   authors: authorsReducer,
-  isDataLoaded: dataLoadedReducer,
+  areAuthorsLoaded: authorsReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
 
-export const store = createStore(rootReducer, composeWithDevTools());
+export const store = createStore(rootReducer, composeWithDevTools(
+  applyMiddleware(thunk),
+));

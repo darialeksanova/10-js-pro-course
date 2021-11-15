@@ -30,3 +30,7 @@
 .dark {
   color: var(--color-primary-1);
 }
+
+.visible {
+  display: block;
+}

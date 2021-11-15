@@ -6,9 +6,8 @@ import { Comment } from 'types/Comment';
 import PostComment from 'components/PostComment';
 import { ThemeContext } from 'ThemeContext';
 import { Themes } from 'types/Theme';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RootState } from 'store/store';
-import { setIsDataLoaded } from 'store/reducers/dataLoadedReducer';
 
 type URLParams = {
   postId: string;
@@ -23,7 +22,6 @@ const PostDetails = () => {
   const selectedPost = posts.find(post => post.id === Number(params.postId));
   const [comments, setComments] = useState<Comment[] | null>(null);
   const history = useHistory();
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if (selectedPost) {
@@ -37,14 +35,13 @@ const PostDetails = () => {
         })
       .then((comments) => {
         setComments(comments);
-        dispatch(setIsDataLoaded());
       })
       .catch(_error => {
         console.log('Sourse is not reachable!');
         history.replace('/posts');
       });
     }
-  }, [params, history, selectedPost, dispatch]);
+  }, [params, history, selectedPost]);
 
   return (
     <>

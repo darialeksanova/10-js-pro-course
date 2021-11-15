@@ -1,7 +1,6 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import styles from './App.module.css';
 import { ThemeContext } from './ThemeContext';
-import Loader from 'components/Loader';
 import { Themes } from 'types/Theme';
 import classNames from 'classnames/bind';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
@@ -10,14 +9,20 @@ import Posts from 'pages/Posts';
 import Authors from 'pages/Authors';
 import PostDetails from 'pages/PostDetails';
 import NoMatch from 'pages/NoMatch';
-import { useSelector } from 'react-redux';
-import { RootState } from 'store/store';
+import { useDispatch } from 'react-redux';
+import { loadAuthors } from 'store/authors/actions';
+import { loadPosts } from 'store/posts/actions';
 
 const cx = classNames.bind(styles);
 
 const App = (): JSX.Element => {
-  const isDataLoaded = useSelector((state: RootState) => state.isDataLoaded.isDataLoaded);
   const [theme, setTheme] = useState<Themes>(localStorage.getItem('theme') as Themes || Themes.light);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loadPosts());
+    dispatch(loadAuthors());
+  }, [dispatch]);
 
   const handleThemeChange = () => {
     setTheme(prevTheme => {
@@ -35,10 +40,8 @@ const App = (): JSX.Element => {
             dark: theme === Themes.dark,
           })}>
           <Header handleThemeToggleClick={handleThemeChange}/>
-          {!isDataLoaded && <Loader />}
           <main className={cx({
             main: true,
-            visible: isDataLoaded,
           })}>
 
             <Switch>

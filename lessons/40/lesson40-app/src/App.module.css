@@ -9,12 +9,7 @@
 .main {
   padding: 30px 0 30px 0;
   width: 100vw;
-  display: none;
   overflow-y: auto;
-}
-
-.main.visible {
-  display: block;
 }
 
 .dark {
