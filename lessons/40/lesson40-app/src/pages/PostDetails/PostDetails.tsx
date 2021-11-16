@@ -1,11 +1,10 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router';
 import styles from './PostDetails.module.css';
 import classNames from 'classnames/bind';
 import { Comment } from 'types/Comment';
 import PostComment from 'components/PostComment';
-import { ThemeContext } from 'ThemeContext';
-import { Themes } from 'types/Theme';
+import { Theme } from 'types/Theme';
 import { useSelector } from 'react-redux';
 import { RootState } from 'store/store';
 
@@ -17,7 +16,7 @@ const cx = classNames.bind(styles);
 
 const PostDetails = () => {
   const posts = useSelector((state: RootState) => state.posts.posts);
-  const theme = useContext(ThemeContext);
+  const currentTheme = useSelector((state: RootState) => state.theme.theme);
   const params = useParams<URLParams>();
   const selectedPost = posts.find(post => post.id === Number(params.postId));
   const [comments, setComments] = useState<Comment[] | null>(null);
@@ -47,14 +46,14 @@ const PostDetails = () => {
     <>
       <div className={cx({
         postDetails: true,
-        dark: theme === Themes.dark,
+        dark: currentTheme === Theme.dark,
       })}>
         <h1 className={styles.postTitle}>{selectedPost?.title}</h1>
         <div className={styles.postContent}>{selectedPost?.body}</div>
       </div>
       <div className={cx({
         postComments: true,
-        dark: theme === Themes.dark,
+        dark: currentTheme === Theme.dark,
       })}>
         <h2 className={styles.commentsTitle}>Comments</h2>
         <div className={styles.commentsContent}>

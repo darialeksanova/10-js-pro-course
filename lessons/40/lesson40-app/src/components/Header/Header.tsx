@@ -1,28 +1,29 @@
-import { useContext, useMemo } from 'react';
+import { useMemo } from 'react';
 import { NavLink } from 'react-router-dom';
-import { ThemeContext } from 'ThemeContext';
 import styles from './Header.module.css';
 import classNames from 'classnames/bind';
-import { Themes } from 'types/Theme';
+import { Theme } from 'types/Theme';
 import Button from 'components/Button';
+import { useSelector } from 'react-redux';
+import { RootState } from 'store/store';
 
 type Props = {
-  handleThemeToggleClick: (themeValue: Themes) => void;
+  handleThemeToggleClick: (themeValue: Theme) => void;
 }
 
 const cx = classNames.bind(styles);
 
 const Header = ({ handleThemeToggleClick }: Props): JSX.Element => {
-  const theme = useContext(ThemeContext);
-  const toggleThemeButtonText = useMemo<Themes>(() => theme === Themes.light ? Themes.dark : Themes.light, [theme]);
+  const currentTheme = useSelector((state: RootState) => state.theme.theme);
+  const toggleThemeButtonText = useMemo<Theme>(() => currentTheme === Theme.light ? Theme.dark : Theme.light, [currentTheme]);
 
   return (
     <header className={cx({
       header: true,
-      dark: theme === Themes.dark,
+      dark: currentTheme === Theme.dark,
     })}>
       <Button 
-        onClick={() => handleThemeToggleClick(theme)} 
+        onClick={() => handleThemeToggleClick(currentTheme)} 
         text={`${toggleThemeButtonText} mode`}
         size='small'
       /> 

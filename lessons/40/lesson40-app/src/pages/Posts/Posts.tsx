@@ -1,4 +1,4 @@
-import {useState, useCallback, useContext, useEffect} from 'react';
+import {useState, useCallback, useEffect} from 'react';
 import PostsContainer from 'components/PostsContainer';
 import Modal from 'components/Modal';
 import Button from 'components/Button';
@@ -6,8 +6,7 @@ import AuthorInfo from 'components/AuthorInfo';
 import { Author } from 'types/Author';
 import styles from './Posts.module.css';
 import classNames from 'classnames/bind';
-import { ThemeContext } from 'ThemeContext';
-import { Themes } from 'types/Theme';
+import { Theme } from 'types/Theme';
 import { useHistory, useLocation } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'store/store';
@@ -18,7 +17,7 @@ import { loadAuthors } from 'store/authors/actions';
 const cx = classNames.bind(styles);
 
 const Posts = () => {
-  const theme = useContext(ThemeContext);
+  const currentTheme = useSelector((state: RootState) => state.theme.theme);
   const location = useLocation();
   const history = useHistory();
   const dispatch = useDispatch();
@@ -64,7 +63,7 @@ const Posts = () => {
       {!arePostsLoaded && <Loader />}
       <div className={cx({
         container: true,
-        dark: theme === Themes.dark,
+        dark: currentTheme === Theme.dark,
         visible: arePostsLoaded,
       })}>
         <h1 className={styles.title}>POSTS</h1>

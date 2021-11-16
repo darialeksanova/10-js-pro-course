@@ -15,7 +15,7 @@ export const authorsReducer: Reducer<AuthorsState, authorsReducerAction> = (stat
       return {
         ...state,
         isLoading: true,
-      }
+      };
     }
 
     case AuthorsAction.LOAD_AUTHORS_SUCCESS: {
@@ -24,7 +24,7 @@ export const authorsReducer: Reducer<AuthorsState, authorsReducerAction> = (stat
         authors: action.payload,
         isLoading: false,
         areAuthorsLoaded: true,
-      }
+      };
     }
 
     case AuthorsAction.LOAD_AUTHORS_FAILURE: {
@@ -33,7 +33,7 @@ export const authorsReducer: Reducer<AuthorsState, authorsReducerAction> = (stat
         isLoading: false,
         areAuthorsLoaded: false,
         error: action.payload,
-      }
+      };
     }
 
     default: {

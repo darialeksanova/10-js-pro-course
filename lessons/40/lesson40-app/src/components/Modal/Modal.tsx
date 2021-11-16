@@ -1,9 +1,9 @@
-import {useContext} from 'react';
 import styles from './Modal.module.css';
 import Button from 'components/Button';
-import { ThemeContext } from 'ThemeContext';
 import classNames from 'classnames/bind';
-import { Themes } from 'types/Theme';
+import { Theme } from 'types/Theme';
+import { useSelector } from 'react-redux';
+import { RootState } from 'store/store';
 
 type Props = {
   closeModal: () => void;
@@ -14,14 +14,14 @@ type Props = {
 const cx = classNames.bind(styles);
 
 const Modal = ({closeModal, children, size}: Props): JSX.Element => {
-  const theme = useContext(ThemeContext);
+  const currentTheme = useSelector((state: RootState) => state.theme.theme);
 
   return (
     <div className={styles.overlay}>
       <div className={styles.backdrop} onClick={closeModal}></div>
       <div className={cx({
         modal: true,
-        dark: theme === Themes.dark,
+        dark: currentTheme === Theme.dark,
       }, size)}>
         <div className={styles.modalContent}>
           {children}

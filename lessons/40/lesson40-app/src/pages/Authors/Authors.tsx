@@ -1,23 +1,22 @@
-import { useContext, useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import styles from './Authors.module.css'
 import { Author } from 'types/Author';
-import { ThemeContext } from 'ThemeContext';
 import classNames from 'classnames/bind';
 import Modal from 'components/Modal';
 import AuthorInfo from 'components/AuthorInfo';
-import { Themes } from 'types/Theme';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'store/store';
 import Loader from 'components/Loader';
 import { loadAuthors } from 'store/authors/actions';
+import { Theme } from 'types/Theme';
 
 const cx = classNames.bind(styles);
 
 const Authors = () => {
+  const currentTheme = useSelector((state: RootState) => state.theme.theme);
   const authors = useSelector((state: RootState) => state.authors.authors);
   const areAuthorsLoaded = useSelector((state: RootState) => state.authors.areAuthorsLoaded);
   const [requestedAuthor, setRequestedAuthor] = useState<Author | null>(null);
-  const theme = useContext(ThemeContext);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -41,7 +40,7 @@ const Authors = () => {
       {!areAuthorsLoaded && <Loader />}
       <div className={cx({
         container: true,
-        dark: theme === Themes.dark,
+        dark: currentTheme === Theme.dark,
         visible: areAuthorsLoaded,
       })}>
         <h1 className={styles.title}>USERS</h1>

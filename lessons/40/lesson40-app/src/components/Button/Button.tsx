@@ -1,8 +1,8 @@
-import { useContext } from 'react';
 import styles from './Button.module.css';
 import classNames from 'classnames/bind';
-import { ThemeContext } from 'ThemeContext';
-import { Themes } from 'types/Theme';
+import { Theme } from 'types/Theme';
+import { useSelector } from 'react-redux';
+import { RootState } from 'store/store';
 
 type Props = {
   text: string;
@@ -13,13 +13,13 @@ type Props = {
 const cx = classNames.bind(styles);
 
 const Button = ({ text, size, onClick }: Props): JSX.Element => {
-  const theme = useContext(ThemeContext);
+  const currentTheme = useSelector((state: RootState) => state.theme.theme);
 
   return (
     <button 
       className={cx({
         button: true,
-        dark: theme === Themes.dark, 
+        dark: currentTheme === Theme.dark, 
     }, size)} 
       onClick={onClick}>{text}
     </button>

@@ -14,7 +14,7 @@ export const postsReducer: Reducer<PostsState, postsReducerAction> = (state: Pos
       return {
         ...state,
         isLoading: true,
-      }
+      };
     }
 
     case PostsAction.LOAD_POSTS_SUCCESS: {
@@ -23,7 +23,7 @@ export const postsReducer: Reducer<PostsState, postsReducerAction> = (state: Pos
         posts: action.payload,
         isLoading: false,
         arePostsLoaded: true,
-      }
+      };
     }
 
     case PostsAction.LOAD_POSTS_FAILURE: {
@@ -32,7 +32,7 @@ export const postsReducer: Reducer<PostsState, postsReducerAction> = (state: Pos
         isLoading: false,
         arePostsLoaded: false,
         error: action.payload,
-      }
+      };
     }
     
     default: {
