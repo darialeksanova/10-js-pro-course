@@ -6,9 +6,7 @@ import thunk from 'redux-thunk';
 
 const rootReducer = combineReducers({
   posts: postsReducer,
-  arePostsLoaded: postsReducer,
   authors: authorsReducer,
-  areAuthorsLoaded: authorsReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

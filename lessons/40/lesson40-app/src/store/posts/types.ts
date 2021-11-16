@@ -3,16 +3,20 @@ import { Post } from 'types/Post';
 import { ActionPayload } from 'types/ActionPayload';
 
 export enum PostsAction {
-  SET_POSTS = 'set-posts',
-  SET_ARE_POSTS_LOADED = 'set-are-posts-loaded',
+  LOAD_POSTS_STARTED = 'load-posts-started',
+  LOAD_POSTS_SUCCESS = 'load-posts-success',
+  LOAD_POSTS_FAILURE = 'load-posts-failure',
 }
 
 export type PostsState = {
   posts: Post[];
+  isLoading: boolean;
   arePostsLoaded: boolean;
+  error: null | Error;
 };
 
-export type setPostsAction = ActionPayload<PostsAction.SET_POSTS, Post[]>;
-export type setArePostsLoadedAction = Action<PostsAction.SET_ARE_POSTS_LOADED>;
+export type loadPostsStartedAction = Action<PostsAction.LOAD_POSTS_STARTED>;
+export type loadPostsSuccessAction = ActionPayload<PostsAction.LOAD_POSTS_SUCCESS, Post[]>;
+export type loadPostsFailureAction = ActionPayload<PostsAction.LOAD_POSTS_FAILURE, null | Error>;
 
-export type postsReducerAction = setPostsAction | setArePostsLoadedAction;
+export type postsReducerAction = loadPostsStartedAction | loadPostsSuccessAction | loadPostsFailureAction;

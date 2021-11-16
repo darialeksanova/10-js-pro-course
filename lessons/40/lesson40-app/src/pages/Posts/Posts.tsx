@@ -1,4 +1,4 @@
-import {useState, useCallback, useContext} from 'react';
+import {useState, useCallback, useContext, useEffect} from 'react';
 import PostsContainer from 'components/PostsContainer';
 import Modal from 'components/Modal';
 import Button from 'components/Button';
@@ -9,9 +9,11 @@ import classNames from 'classnames/bind';
 import { ThemeContext } from 'ThemeContext';
 import { Themes } from 'types/Theme';
 import { useHistory, useLocation } from 'react-router';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'store/store';
 import Loader from 'components/Loader';
+import { loadPosts } from 'store/posts/actions';
+import { loadAuthors } from 'store/authors/actions';
 
 const cx = classNames.bind(styles);
 
@@ -19,14 +21,20 @@ const Posts = () => {
   const theme = useContext(ThemeContext);
   const location = useLocation();
   const history = useHistory();
+  const dispatch = useDispatch();
   const authors = useSelector((state: RootState) => state.authors.authors);
-  const arePostsLoaded = useSelector((state: RootState) => state.arePostsLoaded.arePostsLoaded);
+  const arePostsLoaded = useSelector((state: RootState) => state.posts.arePostsLoaded);
   
   const query = new URLSearchParams(location.search);
   const totalPosts = query.get('totalPosts') || '5';
 
   const [visiblePostsAmount, setVisiblePostsAmount] = useState(Number(totalPosts));
   const [requestedAuthor, setRequestedAuthor] = useState<Author | null>(null);
+
+  useEffect(() => {
+    dispatch(loadPosts());
+    dispatch(loadAuthors());
+  }, [dispatch]);
 
   const openAuthorInfoModal = useCallback((requestedAuthorId: number): void => {
     const requestedAuthor = authors[requestedAuthorId];

@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import { useState } from 'react';
 import styles from './App.module.css';
 import { ThemeContext } from './ThemeContext';
 import { Themes } from 'types/Theme';
@@ -9,20 +9,11 @@ import Posts from 'pages/Posts';
 import Authors from 'pages/Authors';
 import PostDetails from 'pages/PostDetails';
 import NoMatch from 'pages/NoMatch';
-import { useDispatch } from 'react-redux';
-import { loadAuthors } from 'store/authors/actions';
-import { loadPosts } from 'store/posts/actions';
 
 const cx = classNames.bind(styles);
 
 const App = (): JSX.Element => {
   const [theme, setTheme] = useState<Themes>(localStorage.getItem('theme') as Themes || Themes.light);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(loadPosts());
-    dispatch(loadAuthors());
-  }, [dispatch]);
 
   const handleThemeChange = () => {
     setTheme(prevTheme => {

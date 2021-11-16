@@ -3,22 +3,35 @@ import { PostsState, PostsAction, postsReducerAction } from './types';
 
 const InitialState: PostsState = {
   posts: [],
+  isLoading: false,
   arePostsLoaded: false,
+  error: null,
 };
 
 export const postsReducer: Reducer<PostsState, postsReducerAction> = (state: PostsState = InitialState, action: postsReducerAction) => {
   switch (action.type) {
-    case PostsAction.SET_POSTS: {
+    case PostsAction.LOAD_POSTS_STARTED: {
       return {
         ...state,
-        posts: action.payload,
+        isLoading: true,
       }
     }
 
-    case PostsAction.SET_ARE_POSTS_LOADED: {
+    case PostsAction.LOAD_POSTS_SUCCESS: {
       return {
         ...state,
+        posts: action.payload,
+        isLoading: false,
         arePostsLoaded: true,
+      }
+    }
+
+    case PostsAction.LOAD_POSTS_FAILURE: {
+      return {
+        ...state,
+        isLoading: false,
+        arePostsLoaded: false,
+        error: action.payload,
       }
     }
     
