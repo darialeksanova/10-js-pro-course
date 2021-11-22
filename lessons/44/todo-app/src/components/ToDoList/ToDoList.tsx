@@ -18,13 +18,21 @@ const ToDoList = () => {
   }, [dispatch]);
 
   return (
-    <div className={styles.toDoList}>
+    <div className={styles.toDoList} data-testid='todo-list'>
       <h2 className={styles.toDoListTitle}>TodoList</h2>
       <ToDoFilter />
       <ToDoItemsContainer />
       <div className={styles.toDoListActions}>
-        <button className={styles.toDoListButton} onClick={handleDeleteDoneButtonClick}>Delete done tasks</button>
-        <button className={styles.toDoListButton} onClick={handleDeleteAllButtonClick}>Delete all tasks</button>
+        <button 
+          className={styles.toDoListButton} 
+          data-testid='delete-done-tasks-button' 
+          onClick={handleDeleteDoneButtonClick}
+        >Delete done tasks</button>
+        <button 
+          className={styles.toDoListButton} 
+          data-testid='delete-all-tasks-button'
+          onClick={handleDeleteAllButtonClick}
+        >Delete all tasks</button>
       </div>
     </div>
   );

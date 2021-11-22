@@ -31,13 +31,14 @@ const ToDoFilter = () => {
   }, [dispatch]);
 
   return (
-    <div className={styles.toDoFilter}>
+    <div className={styles.toDoFilter} data-testid='todo-filter'>
       <div className={styles.toDoFilterActions}>
         <button 
           className={cx({
             toDoButton: true,
             selected: currentFilter === FilterValue.ALL,
           })} 
+          data-testid='show-all-button'
           onClick={handleShowAll}
         >All</button>
 
@@ -46,6 +47,7 @@ const ToDoFilter = () => {
             toDoButton: true,
             selected: currentFilter === FilterValue.DONE,
           })} 
+          data-testid='show-done-button'
           onClick={handleShowDone}
         >Done</button>
 
@@ -54,12 +56,13 @@ const ToDoFilter = () => {
             toDoButton: true,
             selected: currentFilter === FilterValue.TODO,
           })} 
+          data-testid='show-todo-button'
           onClick={handleShowTodo}
         >Todo</button>
       </div>
-      {currentFilter === FilterValue.ALL && <h4 className={styles.toDoFilterName}>All tasks:</h4>}
-      {currentFilter === FilterValue.DONE && <h4 className={styles.toDoFilterName}>Done tasks:</h4>}
-      {currentFilter === FilterValue.TODO && <h4 className={styles.toDoFilterName}>Tasks to do:</h4>}
+      {currentFilter === FilterValue.ALL && <h4 className={styles.toDoFilterName} data-testid='current-filter-label'>All tasks:</h4>}
+      {currentFilter === FilterValue.DONE && <h4 className={styles.toDoFilterName} data-testid='current-filter-label'>Done tasks:</h4>}
+      {currentFilter === FilterValue.TODO && <h4 className={styles.toDoFilterName} data-testid='current-filter-label'>Tasks to do:</h4>}
     </div>
   );
 }

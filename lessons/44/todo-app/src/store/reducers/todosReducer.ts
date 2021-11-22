@@ -62,7 +62,7 @@ type ReducerAction = AddTodoAction
   | DeleteAllTodosAction
   | DeleteDoneTodosAction;
 
-export const todosReducer: Reducer<TodosState, ReducerAction> = (state: TodosState = initialState, action: ReducerAction) => {
+export const todosReducer: Reducer<TodosState, ReducerAction> = (state = initialState, action) => {
   switch(action.type) {
     case TodosAction.ADD_TODO: {
       const newTodos = {

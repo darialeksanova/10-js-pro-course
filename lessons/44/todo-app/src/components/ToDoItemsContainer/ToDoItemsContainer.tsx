@@ -24,7 +24,7 @@ const ToDoItemsContainer = () => {
   };
 
   return (
-    <div className={styles.toDoItemsContainer}>
+    <div className={styles.toDoItemsContainer} data-testid='todo-items-container'>
       {useMemo(() => filterTodos(todos, currentFilter), [todos, currentFilter]).map(todo => {
         return <ToDoItem key={todo.id} todo={todo} />
       })}
