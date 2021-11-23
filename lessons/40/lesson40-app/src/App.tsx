@@ -41,7 +41,7 @@ const App = (): JSX.Element => {
             <Route path='/posts' element={<Posts/>}></Route>
             <Route path='/posts/:postId' element={<PostDetails/>}></Route>
             <Route path='/users' element={<Authors/>}></Route>
-            <Route element={<NoMatch/>}></Route>
+            <Route path='*' element={<NoMatch/>}></Route>
           </Routes>
         </main>
       </div>
