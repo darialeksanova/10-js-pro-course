@@ -7,7 +7,7 @@ import { Author } from 'types/Author';
 import styles from './Posts.module.css';
 import classNames from 'classnames/bind';
 import { Theme } from 'types/Theme';
-import { useHistory, useLocation } from 'react-router';
+import { useNavigate, useLocation } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'store/store';
 import Loader from 'components/Loader';
@@ -19,7 +19,7 @@ const cx = classNames.bind(styles);
 const Posts = () => {
   const currentTheme = useSelector((state: RootState) => state.theme.theme);
   const location = useLocation();
-  const history = useHistory();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const authors = useSelector((state: RootState) => state.authors.authors);
   const arePostsLoaded = useSelector((state: RootState) => state.posts.arePostsLoaded);
@@ -53,10 +53,10 @@ const Posts = () => {
     const newTotalPosts = parseInt(totalPosts, 10) + 5;
     query.set('totalPosts', newTotalPosts.toString());
 
-    history.replace(`${location.pathname}?${query.toString()}`);
+    navigate(`${location.pathname}?${query.toString()}`, { replace: true });
 
     setVisiblePostsAmount(prevState => prevState + 5);
-  }, [location, history]);
+  }, [location, navigate]);
 
   return (
     <>

@@ -1,7 +1,7 @@
 import styles from './App.module.css';
 import { Theme } from 'types/Theme';
 import classNames from 'classnames/bind';
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Header from 'components/Header';
 import Posts from 'pages/Posts';
 import Authors from 'pages/Authors';
@@ -36,23 +36,13 @@ const App = (): JSX.Element => {
           main: true,
         })}>
 
-          <Switch>
-            <Route exact path='/'>
-              <Redirect to='/posts'></Redirect>
-            </Route>
-            <Route exact path='/posts'>
-              <Posts />
-            </Route>
-            <Route exact path='/posts/:postId'>
-              <PostDetails />
-            </Route>
-            <Route exact path='/users'>
-              <Authors />
-            </Route>
-            <Route>
-              <NoMatch />
-            </Route>
-          </Switch>
+          <Routes>
+            <Route path='/' element={<Navigate to='/posts'></Navigate>}></Route>
+            <Route path='/posts' element={<Posts/>}></Route>
+            <Route path='/posts/:postId' element={<PostDetails/>}></Route>
+            <Route path='/users' element={<Authors/>}></Route>
+            <Route element={<NoMatch/>}></Route>
+          </Routes>
         </main>
       </div>
     </Router>

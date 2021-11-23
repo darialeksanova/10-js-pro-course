@@ -28,8 +28,8 @@ const Header = ({ handleThemeToggleClick }: Props): JSX.Element => {
         size='small'
       /> 
       <ul className={styles.navigation}>
-        <li><NavLink exact to='/posts' className={styles.navLink} activeClassName={styles.selected}>Posts</NavLink></li>
-        <li><NavLink exact to='/users' className={styles.navLink} activeClassName={styles.selected}>Users</NavLink></li>
+        <li><NavLink end to='/posts' className={({isActive}) => styles.navLink + (isActive? styles.selected : '')}>Posts</NavLink></li>
+        <li><NavLink end to='/users' className={({isActive}) => styles.navLink + (isActive? styles.selected : '')}>Users</NavLink></li>
       </ul>
     </header>
   );

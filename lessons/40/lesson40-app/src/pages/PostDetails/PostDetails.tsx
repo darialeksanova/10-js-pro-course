@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams, useHistory } from 'react-router';
+import { useParams, useNavigate } from 'react-router';
 import styles from './PostDetails.module.css';
 import classNames from 'classnames/bind';
 import { Comment } from 'types/Comment';
@@ -9,16 +9,12 @@ import { useSelector } from 'react-redux';
 import { RootState } from 'store/store';
 import { Post } from 'types/Post';
 
-type URLParams = {
-  postId: string;
-};
-
 const cx = classNames.bind(styles);
 
 const PostDetails = () => {
   const currentTheme = useSelector((state: RootState) => state.theme.theme);
-  const params = useParams<URLParams>();
-  const history = useHistory();
+  const params = useParams<'postId'>();
+  const navigate = useNavigate();
   const [selectedPost, setSelectedPost] = useState<Post | null>(null);
   const [comments, setComments] = useState<Comment[] | null>(null);
 
@@ -45,23 +41,25 @@ const PostDetails = () => {
   };
 
   useEffect(() => {
-    getPostById(params.postId)
-      .then(post => {
-        setSelectedPost(post);
-        getPostComments(params.postId)
-        .then((comments) => {
-          setComments(comments);
+    if(params.postId) {
+      getPostById(params.postId)
+        .then(post => {
+          setSelectedPost(post);
+          getPostComments(String(post.id))
+          .then((comments) => {
+            setComments(comments);
+          })
+          .catch(_error => {
+            console.log('Sourse is not reachable!');
+            navigate('/posts', {replace: true});
+          });
         })
         .catch(_error => {
           console.log('Sourse is not reachable!');
-          history.replace('/posts');
+          navigate('/posts', {replace: true});
         });
-      })
-      .catch(_error => {
-        console.log('Sourse is not reachable!');
-        history.replace('/posts');
-      });
-  }, [params, history]);
+    }
+  }, [params, navigate]);
 
   return (
     <>
